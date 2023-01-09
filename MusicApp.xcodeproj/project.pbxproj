@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		5883E66A296C2736009BFA44 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883E669296C2736009BFA44 /* AppDelegate.swift */; };
 		5883E66C296C2736009BFA44 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883E66B296C2736009BFA44 /* SceneDelegate.swift */; };
-		5883E66E296C2736009BFA44 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883E66D296C2736009BFA44 /* ViewController.swift */; };
+		5883E66E296C2736009BFA44 /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883E66D296C2736009BFA44 /* TabBarVC.swift */; };
 		5883E674296C2736009BFA44 /* MusicApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5883E672296C2736009BFA44 /* MusicApp.xcdatamodeld */; };
 		5883E676296C2737009BFA44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5883E675296C2737009BFA44 /* Assets.xcassets */; };
 		5883E679296C2737009BFA44 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5883E677296C2737009BFA44 /* LaunchScreen.storyboard */; };
@@ -21,13 +21,18 @@
 		5883E6BD296C310F009BFA44 /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5883E6B4296C310E009BFA44 /* Inter-SemiBold.ttf */; };
 		5883E6BE296C310F009BFA44 /* Inter-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5883E6B5296C310F009BFA44 /* Inter-ExtraBold.ttf */; };
 		5883E6C2296C31A9009BFA44 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5883E6C1296C31A8009BFA44 /* Roboto-Regular.ttf */; };
+		5883E6CE296C4F8A009BFA44 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883E6CD296C4F8A009BFA44 /* HomeVC.swift */; };
+		5883E6D0296C4FA0009BFA44 /* FavoriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883E6CF296C4FA0009BFA44 /* FavoriteVC.swift */; };
+		5883E6D2296C4FB0009BFA44 /* PlayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883E6D1296C4FB0009BFA44 /* PlayVC.swift */; };
+		5883E6D4296C4FC1009BFA44 /* DownloadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883E6D3296C4FC1009BFA44 /* DownloadVC.swift */; };
+		5883E6D6296C4FD4009BFA44 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883E6D5296C4FD4009BFA44 /* ProfileVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5883E666296C2736009BFA44 /* MusicApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5883E669296C2736009BFA44 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5883E66B296C2736009BFA44 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5883E66D296C2736009BFA44 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5883E66D296C2736009BFA44 /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
 		5883E673296C2736009BFA44 /* MusicApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MusicApp.xcdatamodel; sourceTree = "<group>"; };
 		5883E675296C2737009BFA44 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5883E678296C2737009BFA44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -40,6 +45,11 @@
 		5883E6B4296C310E009BFA44 /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.ttf"; sourceTree = "<group>"; };
 		5883E6B5296C310F009BFA44 /* Inter-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-ExtraBold.ttf"; sourceTree = "<group>"; };
 		5883E6C1296C31A8009BFA44 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		5883E6CD296C4F8A009BFA44 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		5883E6CF296C4FA0009BFA44 /* FavoriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVC.swift; sourceTree = "<group>"; };
+		5883E6D1296C4FB0009BFA44 /* PlayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayVC.swift; sourceTree = "<group>"; };
+		5883E6D3296C4FC1009BFA44 /* DownloadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadVC.swift; sourceTree = "<group>"; };
+		5883E6D5296C4FD4009BFA44 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +103,12 @@
 		5883E681296C2849009BFA44 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5883E66D296C2736009BFA44 /* ViewController.swift */,
+				5883E66D296C2736009BFA44 /* TabBarVC.swift */,
+				5883E6CD296C4F8A009BFA44 /* HomeVC.swift */,
+				5883E6CF296C4FA0009BFA44 /* FavoriteVC.swift */,
+				5883E6D1296C4FB0009BFA44 /* PlayVC.swift */,
+				5883E6D3296C4FC1009BFA44 /* DownloadVC.swift */,
+				5883E6D5296C4FD4009BFA44 /* ProfileVC.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -240,9 +255,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5883E6D6296C4FD4009BFA44 /* ProfileVC.swift in Sources */,
 				5883E689296C2F8F009BFA44 /* Constants.swift in Sources */,
-				5883E66E296C2736009BFA44 /* ViewController.swift in Sources */,
+				5883E6CE296C4F8A009BFA44 /* HomeVC.swift in Sources */,
+				5883E6D4296C4FC1009BFA44 /* DownloadVC.swift in Sources */,
+				5883E6D2296C4FB0009BFA44 /* PlayVC.swift in Sources */,
+				5883E66E296C2736009BFA44 /* TabBarVC.swift in Sources */,
 				5883E66A296C2736009BFA44 /* AppDelegate.swift in Sources */,
+				5883E6D0296C4FA0009BFA44 /* FavoriteVC.swift in Sources */,
 				5883E66C296C2736009BFA44 /* SceneDelegate.swift in Sources */,
 				5883E674296C2736009BFA44 /* MusicApp.xcdatamodeld in Sources */,
 			);
