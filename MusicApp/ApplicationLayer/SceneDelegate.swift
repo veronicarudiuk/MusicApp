@@ -10,13 +10,17 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
-
+    
+    // Показывает 1 раз при первом использовании приложении
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
+        UserDefaults.standard.set(false, forKey: "SEEN-TUTORIAL")
+        let seenTutorial = UserDefaults.standard.bool(forKey: "SEEN-TUTORIAL")
+        let rootViewController = seenTutorial ? TutorialLastScreenVC() : TutorialFirstScreenVC()
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.overrideUserInterfaceStyle = .light
-        window?.rootViewController = TabBarVC()
+        window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
         window?.windowScene = windowScene
     }
