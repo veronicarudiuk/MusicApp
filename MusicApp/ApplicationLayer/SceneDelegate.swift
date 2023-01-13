@@ -16,7 +16,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.overrideUserInterfaceStyle = .light
-        window?.rootViewController = TabBarVC()
+        if AuthManager.shared.isSignedIn {
+            window?.rootViewController = TabBarVC()
+        } else {
+            window?.rootViewController = LoginVC()
+        }
+       // window?.rootViewController = TabBarVC()
         window?.makeKeyAndVisible()
         window?.windowScene = windowScene
     }

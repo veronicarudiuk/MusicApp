@@ -33,4 +33,11 @@ struct K {
         static let interRegular = "Inter Regular"
         static let interSemiBold = "Inter SemiBold"
     }
+    
+    struct Auth {
+        static let clientId = "67c1af1dd0304240a6bf5fbd8b2e4007"
+        static let clientSecret = "1a0a674b59434317b2066e4565169c07"
+        static let tokenApiURL = "https://accounts.spotify.com/api/token"
+        static let redirectURI = "https://www.google.ru/"
+    }
 }
