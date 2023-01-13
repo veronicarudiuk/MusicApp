@@ -10,6 +10,8 @@
 		0136EE6E2970B1F100388CA0 /* AuthResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0136EE6D2970B1F100388CA0 /* AuthResponseData.swift */; };
 		0136EE702970D6D400388CA0 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0136EE6F2970D6D400388CA0 /* LoginVC.swift */; };
 		0136EE722970F1E500388CA0 /* APIRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0136EE712970F1E500388CA0 /* APIRequestManager.swift */; };
+		0136EE742970F38700388CA0 /* UserProfileData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0136EE732970F38700388CA0 /* UserProfileData.swift */; };
+		0136EE7629710AFC00388CA0 /* TrackData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0136EE7529710AFC00388CA0 /* TrackData.swift */; };
 		019B9EE1296F4CDF00E7577B /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019B9EE0296F4CDF00E7577B /* AuthManager.swift */; };
 		019B9EE3296F57CE00E7577B /* AuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019B9EE2296F57CE00E7577B /* AuthVC.swift */; };
 		5883E66A296C2736009BFA44 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883E669296C2736009BFA44 /* AppDelegate.swift */; };
@@ -37,6 +39,8 @@
 		0136EE6D2970B1F100388CA0 /* AuthResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponseData.swift; sourceTree = "<group>"; };
 		0136EE6F2970D6D400388CA0 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		0136EE712970F1E500388CA0 /* APIRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestManager.swift; sourceTree = "<group>"; };
+		0136EE732970F38700388CA0 /* UserProfileData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileData.swift; sourceTree = "<group>"; };
+		0136EE7529710AFC00388CA0 /* TrackData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackData.swift; sourceTree = "<group>"; };
 		019B9EE0296F4CDF00E7577B /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		019B9EE2296F57CE00E7577B /* AuthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVC.swift; sourceTree = "<group>"; };
 		5883E666296C2736009BFA44 /* MusicApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,6 +111,8 @@
 			children = (
 				5883E672296C2736009BFA44 /* MusicApp.xcdatamodeld */,
 				0136EE6D2970B1F100388CA0 /* AuthResponseData.swift */,
+				0136EE732970F38700388CA0 /* UserProfileData.swift */,
+				0136EE7529710AFC00388CA0 /* TrackData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -280,11 +286,13 @@
 				5883E6D2296C4FB0009BFA44 /* PlayVC.swift in Sources */,
 				5883E66E296C2736009BFA44 /* TabBarVC.swift in Sources */,
 				5883E66A296C2736009BFA44 /* AppDelegate.swift in Sources */,
+				0136EE742970F38700388CA0 /* UserProfileData.swift in Sources */,
 				5883E6D0296C4FA0009BFA44 /* FavoriteVC.swift in Sources */,
 				019B9EE1296F4CDF00E7577B /* AuthManager.swift in Sources */,
 				0136EE722970F1E500388CA0 /* APIRequestManager.swift in Sources */,
 				5883E66C296C2736009BFA44 /* SceneDelegate.swift in Sources */,
 				5883E674296C2736009BFA44 /* MusicApp.xcdatamodeld in Sources */,
+				0136EE7629710AFC00388CA0 /* TrackData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

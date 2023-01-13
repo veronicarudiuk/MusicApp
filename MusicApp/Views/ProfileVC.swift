@@ -9,28 +9,38 @@ import UIKit
 
 class ProfileVC: UIViewController {
     
-    private let signOutButton: UIButton = {
-       let button = UIButton()
-        button.backgroundColor = .red
-        button.setTitle("Sign out", for: .normal)
-        return button
-    }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(named: K.BrandColors.grayBG)
-        view.addSubview(signOutButton)
-        signOutButton.addTarget(self, action: #selector(SignOut), for: .touchUpInside)
-        signOutButton.frame =  CGRect(x: view.frame.size.width/4, y: view.frame.size.height/2, width: 200, height: 50)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "LogOut",
+                                                            style: .plain,
+                                                            target: self,
+                                                            action: #selector(signOut))
+        navigationItem.rightBarButtonItem?.tintColor = .black
+        
+        testAPI()
     }
     
-    @objc func SignOut() {
+    @objc func signOut() {
         UserDefaults.standard.removeObject(forKey: "access_token")
         self.dismiss(animated: true)
         DispatchQueue.main.async {
             let vc = LoginVC()
             vc.modalPresentationStyle = .fullScreen
             self.present(vc, animated: true)
+        }
+    }
+    
+    //MARK - Test API
+    func testAPI() {
+        APIRequestManager.shared.getTrack(id: "11dFghVXANMlKmJXsNCbNl") { result in
+            switch result {
+            case .success(let model):
+                print(model.display_name)
+                break
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
         }
     }
     
