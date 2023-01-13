@@ -24,6 +24,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
        // window?.rootViewController = TabBarVC()
         window?.makeKeyAndVisible()
         window?.windowScene = windowScene
+        
+        AuthManager.shared.refreshAccessToken { success in
+            print("🟨🟨 Token is refreshed or refresh is not needed: \(success)")
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

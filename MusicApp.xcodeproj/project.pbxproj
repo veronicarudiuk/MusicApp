@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0136EE6E2970B1F100388CA0 /* AuthResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0136EE6D2970B1F100388CA0 /* AuthResponseData.swift */; };
 		0136EE702970D6D400388CA0 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0136EE6F2970D6D400388CA0 /* LoginVC.swift */; };
+		0136EE722970F1E500388CA0 /* APIRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0136EE712970F1E500388CA0 /* APIRequestManager.swift */; };
 		019B9EE1296F4CDF00E7577B /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019B9EE0296F4CDF00E7577B /* AuthManager.swift */; };
 		019B9EE3296F57CE00E7577B /* AuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019B9EE2296F57CE00E7577B /* AuthVC.swift */; };
 		5883E66A296C2736009BFA44 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883E669296C2736009BFA44 /* AppDelegate.swift */; };
@@ -35,6 +36,7 @@
 /* Begin PBXFileReference section */
 		0136EE6D2970B1F100388CA0 /* AuthResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponseData.swift; sourceTree = "<group>"; };
 		0136EE6F2970D6D400388CA0 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		0136EE712970F1E500388CA0 /* APIRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestManager.swift; sourceTree = "<group>"; };
 		019B9EE0296F4CDF00E7577B /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		019B9EE2296F57CE00E7577B /* AuthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVC.swift; sourceTree = "<group>"; };
 		5883E666296C2736009BFA44 /* MusicApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				019B9EE0296F4CDF00E7577B /* AuthManager.swift */,
+				0136EE712970F1E500388CA0 /* APIRequestManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				5883E66A296C2736009BFA44 /* AppDelegate.swift in Sources */,
 				5883E6D0296C4FA0009BFA44 /* FavoriteVC.swift in Sources */,
 				019B9EE1296F4CDF00E7577B /* AuthManager.swift in Sources */,
+				0136EE722970F1E500388CA0 /* APIRequestManager.swift in Sources */,
 				5883E66C296C2736009BFA44 /* SceneDelegate.swift in Sources */,
 				5883E674296C2736009BFA44 /* MusicApp.xcdatamodeld in Sources */,
 			);

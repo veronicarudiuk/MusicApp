@@ -39,5 +39,6 @@ struct K {
         static let clientSecret = "1a0a674b59434317b2066e4565169c07"
         static let tokenApiURL = "https://accounts.spotify.com/api/token"
         static let redirectURI = "https://www.google.ru/"
+        static let scopes = "user-read-private%20playlist-modify-public%20playlist-read-private%20playlist-modify-private%20user-follow-read%20user-library-modify%20user-library-read%20user-read-email"
     }
 }
