@@ -14,7 +14,8 @@ class SearchVC: UIViewController {
         searchVC.searchBar.placeholder = "Search music"
         searchVC.definesPresentationContext = true
         searchVC.searchBar.searchBarStyle = .minimal
-        searchVC.searchBar.tintColor = .white
+        searchVC.searchBar.tintColor = UIColor(named: K.BrandColors.greenGradientColor)
+        searchVC.searchBar.searchTextField.backgroundColor = .systemGray6
         return searchVC
     }()
     
@@ -36,7 +37,7 @@ class SearchVC: UIViewController {
     
     private func setupUI() {
         navigationItem.searchController = searchController
-        searchController.searchBar.searchTextField.textColor = .white
+        //searchController.searchBar.searchTextField.textColor = .white
         searchController.searchBar.backgroundColor = UIColor(named: K.BrandColors.darkBG)
         startLabel.center = view.center
         view.backgroundColor = UIColor(named: K.BrandColors.darkBG)
