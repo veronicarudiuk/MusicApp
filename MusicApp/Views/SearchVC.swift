@@ -9,7 +9,7 @@ import UIKit
 
 class SearchVC: UIViewController {
     
-    var searchController: UISearchController  = {
+    private var searchController: UISearchController  = {
         let searchVC = UISearchController(searchResultsController: SearchResultsVC())
         searchVC.searchBar.placeholder = "Search music"
         searchVC.definesPresentationContext = true
@@ -17,7 +17,7 @@ class SearchVC: UIViewController {
         return searchVC
     }()
     
-    var  startLabel: UILabel = {
+    private var  startLabel: UILabel = {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 21))
         label.text = "🎧 Let's start to search music"
         label.textAlignment = .center
@@ -49,14 +49,15 @@ extension SearchVC: UISearchResultsUpdating {
         guard let query = searchController.searchBar.text, query != "" else { return }
         guard let resultsController = searchController.searchResultsController as? SearchResultsVC else { return }
         
-        resultsController.startLabel.text = query
+        //resultsController.startLabel.text = query
         print(query)
-
         APIRequestManager.shared.searchTrack(with: query) { result in
             DispatchQueue.main.async {
                 switch result {
-                case .success(let data): break
-                case .failure(let error): break
+                case .success(let data):
+                    resultsController.update(with: data)
+                case .failure(let error):
+                    print(error)
                 }
             }
         }

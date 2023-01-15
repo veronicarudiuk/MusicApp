@@ -7,23 +7,42 @@
 
 import UIKit
 
-class SearchResultsVC: UIViewController {
-    var  startLabel: UILabel = {
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 21))
-        label.text = "🎧 d"
-        label.textAlignment = .center
-        label.textColor = .white
-        label.font = UIFont(name: "Roboto-Regular", size: 18)
-        return label
+class SearchResultsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    private var results: SearchData?
+
+    private let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.isHidden = true
+        tableView.backgroundColor = UIColor(named: K.BrandColors.darkBG)
+        return tableView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(named: K.BrandColors.darkBG)
-        view.addSubview(startLabel)
-        startLabel.center = view.center
-
-        // Do any additional setup after loading the view.
+        view.backgroundColor =  UIColor(named: K.BrandColors.darkBG)
+        view.addSubview(tableView)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.frame = view.bounds
+    }
+    
+    func update(with results: SearchData) {
+        self.results = results
+        //guard let safeResults = self.results else { return }
+        tableView.isHidden = false
+        tableView.reloadData()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return results?.tracks.items.count ?? 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text = results?.tracks.items[indexPath.row].name
+        return cell
     }
     
 

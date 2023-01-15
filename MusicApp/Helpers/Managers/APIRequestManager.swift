@@ -36,7 +36,7 @@ final class APIRequestManager {
     // MARK: - Search track
     
     public func searchTrack(with: String, completion: @escaping (Result<SearchData, Error>) -> Void) {
-        createRequest(with: URL(string: K.API.baseAPIURL + "/search?limit=2&type=track&q=\(with.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" )"), type: .GET) { baseRequest in
+        createRequest(with: URL(string: K.API.baseAPIURL + "/search?limit=20&type=track&q=\(with.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" )"), type: .GET) { baseRequest in
             //print(baseRequest.url?.absoluteString ?? "No request")
             URLSession.shared.dataTask(with: baseRequest) { data, _, error in
                 guard let data = data, error == nil else {
