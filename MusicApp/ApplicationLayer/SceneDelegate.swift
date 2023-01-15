@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         UserDefaults.standard.set(false, forKey: "SEEN-TUTORIAL")
         let seenTutorial = UserDefaults.standard.bool(forKey: "SEEN-TUTORIAL")
-        let rootViewController = seenTutorial ? TutorialLastScreenVC() : TutorialFirstScreenVC()
+        let rootViewController = seenTutorial ? TutorialScreensVC() : TutorialScreensVC()
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.overrideUserInterfaceStyle = .light
         window?.rootViewController = rootViewController
