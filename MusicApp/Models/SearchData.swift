@@ -8,19 +8,11 @@
 import Foundation
 
 struct SearchData: Decodable {
-    let tracks: TrackSearchData//
+    let tracks: TrackSearchResponse
 }
 
-struct TrackSearchData: Decodable {
-    let items: [Track]//
-}
-
-struct Album: Decodable {
-    let album_type: String
-    let id: String
-    let images: [ImageData]
-    let name: String
-    let artists: [ArtistData]
+struct TrackSearchResponse: Decodable {
+    let items: [TrackData]
 }
 
 struct ImageData: Decodable {
@@ -29,12 +21,7 @@ struct ImageData: Decodable {
     let width: Int
 }
 
-struct ArtistData: Decodable {
-    let external_urls: [String: String]
-    let id: String
-    let name: String
-    let type: String
-}
+
 
 //{
 //    tracks =     {
