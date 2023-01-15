@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 final class AuthManager {
     static let shared = AuthManager()
@@ -60,9 +61,9 @@ final class AuthManager {
         }
         
         components.queryItems = [
-        URLQueryItem(name: "grant_type", value: "authorization_code"),
-        URLQueryItem(name: "code", value: code),
-        URLQueryItem(name: "redirect_uri", value: K.Auth.redirectURI)
+            URLQueryItem(name: "grant_type", value: "authorization_code"),
+            URLQueryItem(name: "code", value: code),
+            URLQueryItem(name: "redirect_uri", value: K.Auth.redirectURI)
         ]
         request.httpMethod = "POST"
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
@@ -119,7 +120,7 @@ final class AuthManager {
         let data = basicToken.data(using: .utf8)
         
         refreshingToken = true
-
+        
         guard let base64Token = data?.base64EncodedString() else {
             print("🟥🟥 Fail to get base64Token")
             completion(false)
@@ -128,8 +129,8 @@ final class AuthManager {
         }
         
         components.queryItems = [
-        URLQueryItem(name: "grant_type", value: "refresh_token"),
-        URLQueryItem(name: "refresh_token", value: refreshToken)
+            URLQueryItem(name: "grant_type", value: "refresh_token"),
+            URLQueryItem(name: "refresh_token", value: refreshToken)
         ]
         request.httpMethod = "POST"
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
@@ -163,6 +164,14 @@ final class AuthManager {
         
         if let refreshTokenIs = result.refresh_token {
             UserDefaults.standard.set(refreshTokenIs, forKey: "refresh_token")
+        }
+    }
+    
+    public func choosePresentingVC() -> UIViewController {
+        if AuthManager.shared.isSignedIn {
+            return TabBarVC()
+        } else {
+            return LoginVC()//AuthVC()
         }
     }
 }

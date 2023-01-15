@@ -118,12 +118,19 @@ class TutorialFirstScreenVC: UIViewController {
         transition.subtype = CATransitionSubtype.fromRight
         transition.timingFunction = CAMediaTimingFunction(name:CAMediaTimingFunctionName.easeInEaseOut)
         view.window!.layer.add(transition, forKey: kCATransition)
-        present(tutorialLastPage, animated: false, completion: nil)
+        
+        self.present(tutorialLastPage, animated: false, completion: nil)
     }
     
     @objc
     private func skipButtonTapped() {
         UserDefaults.standard.set(true, forKey: "SEEN-TUTORIAL")
+        DispatchQueue.main.async {
+            let vc = AuthManager.shared.choosePresentingVC()
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true)
+        }
+        self.dismiss(animated: true)
         print("Skip button tapped")
     }
 }

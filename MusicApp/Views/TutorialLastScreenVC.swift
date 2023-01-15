@@ -94,6 +94,13 @@ class TutorialLastScreenVC: UIViewController {
     @objc
     private func startButtonTapped() {
         UserDefaults.standard.set(true, forKey: "SEEN-TUTORIAL")
+        
+        DispatchQueue.main.async {
+            let vc = AuthManager.shared.choosePresentingVC()
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true)
+        }
+        
         print("Start button tapped")
     }
 }

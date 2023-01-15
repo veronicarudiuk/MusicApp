@@ -15,17 +15,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
+        
         UserDefaults.standard.set(false, forKey: "SEEN-TUTORIAL")
+        
         let seenTutorial = UserDefaults.standard.bool(forKey: "SEEN-TUTORIAL")
-        let rootViewController = seenTutorial ? TutorialLastScreenVC() : TutorialFirstScreenVC()
+        let rootViewController = seenTutorial ? AuthManager.shared.choosePresentingVC() : TutorialFirstScreenVC()
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.overrideUserInterfaceStyle = .light
-        if AuthManager.shared.isSignedIn {
-            window?.rootViewController = TabBarVC()
-        } else {
-            window?.rootViewController = LoginVC()
-        }
-       // window?.rootViewController = TabBarVC()
+        window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
         window?.windowScene = windowScene
         

@@ -13,7 +13,7 @@ class LoginVC: UIViewController {
         let button = UIButton()
         button.layer.cornerRadius = 20
         button.backgroundColor = .systemGreen
-        button.setTitle("Sign In with Spotify", for: .normal)
+        button.setTitle("Sign In with Spotify (включи VPN)", for: .normal)
         button.titleLabel?.font = UIFont(name: "Inter-Medium", size: 20)
         return button
     }()
