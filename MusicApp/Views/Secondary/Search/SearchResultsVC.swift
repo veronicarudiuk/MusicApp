@@ -4,12 +4,13 @@
 //
 //  Created by Марс Мазитов on 15.01.2023.
 //
-
+import AVFoundation
 import UIKit
 
 class SearchResultsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     private var results: SearchData?
+    var player: AVPlayer?
     
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -60,6 +61,12 @@ class SearchResultsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        guard let url = URL(string: results?.tracks.items[indexPath.row].preview_url ?? "") else { return }
+        print(url)
+        player?.pause()
+        player = AVPlayer(url: url)
+        player?.play()
+        player?.volume = 1
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
