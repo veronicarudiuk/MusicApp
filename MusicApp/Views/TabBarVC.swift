@@ -16,12 +16,14 @@ class TabBarVC: UITabBarController {
         setupVCs()
     }
     
+//TODO: - change images for SearchVC
+    
     func setupVCs() {
         viewControllers = [
             createNavController(for: HomeVC(), image: UIImage(named: "HomeInactive")!, selectedImage: UIImage(named: "HomeActive")!),
             createNavController(for: FavoriteVC(), image: UIImage(named: "FavoriteInctive")!, selectedImage: UIImage(named: "FavoriteActive")!),
             createNavController(for: PlayVC(), image: UIImage(named: "PlayInactive")!, selectedImage: UIImage(named: "PlayActive")!),
-            createNavController(for: DownloadVC(), image: UIImage(named: "DownloadInactive")!, selectedImage: UIImage(named: "DownloadActive")!),
+            createNavController(for: SearchVC(), image: UIImage(named: "DownloadInactive")!, selectedImage: UIImage(named: "DownloadActive")!),
             createNavController(for: ProfileVC(), image: UIImage(named: "ProfileInctive")!, selectedImage: UIImage(named: "ProfileActive")!),
         ]
     }
