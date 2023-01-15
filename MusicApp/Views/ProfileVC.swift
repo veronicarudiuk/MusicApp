@@ -12,7 +12,7 @@ class ProfileVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "LogOut",
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout",
                                                             style: .plain,
                                                             target: self,
                                                             action: #selector(signOut))
@@ -33,6 +33,18 @@ class ProfileVC: UIViewController {
     
     //MARK - Test API
     func testAPI() {
+        APIRequestManager.shared.gerCurrentUserProfile { result in
+            switch result {
+            case .success(let model):
+                print(model.display_name)
+                print(model.email)
+                break
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        
+        
         APIRequestManager.shared.getTrack(id: "11dFghVXANMlKmJXsNCbNl") { result in
             switch result {
             case .success(let model):

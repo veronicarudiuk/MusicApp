@@ -17,7 +17,6 @@ final class AuthManager {
     private var refreshingToken = false //токен в процессе обновления
     
     public var signInURL: URL? {
-       
         let apiBase = "https://accounts.spotify.com/authorize"
         let string = "\(apiBase)?response_type=code&client_id=\(K.Auth.clientId)&scope=\(K.Auth.scopes)&redirect_uri=\(K.Auth.redirectURI)&show_dialog=true"
         return URL(string: string)

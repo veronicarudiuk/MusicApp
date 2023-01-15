@@ -7,9 +7,17 @@
 
 import Foundation
 
-struct TrackData: Decodable {
+struct Track: Decodable {
+    let album: Album
+    let artists: [ArtistData]
+    let duration_ms: Int
+    let explicit: Bool
+    let external_urls: [String: String]
+    let id: String
+    let name: String
     
 }
+
 //{
 //    album =     {
 //        "album_type" = single;

@@ -12,8 +12,11 @@
 		0136EE722970F1E500388CA0 /* APIRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0136EE712970F1E500388CA0 /* APIRequestManager.swift */; };
 		0136EE742970F38700388CA0 /* UserProfileData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0136EE732970F38700388CA0 /* UserProfileData.swift */; };
 		0136EE7629710AFC00388CA0 /* TrackData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0136EE7529710AFC00388CA0 /* TrackData.swift */; };
+		0136EE782972FD9500388CA0 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0136EE772972FD9500388CA0 /* SearchVC.swift */; };
+		0136EE7B2973817800388CA0 /* SearchResultsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0136EE7A2973817800388CA0 /* SearchResultsVC.swift */; };
 		019B9EE1296F4CDF00E7577B /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019B9EE0296F4CDF00E7577B /* AuthManager.swift */; };
 		019B9EE3296F57CE00E7577B /* AuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019B9EE2296F57CE00E7577B /* AuthVC.swift */; };
+		01B9E9F82973927E00413CC1 /* SearchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B9E9F72973927E00413CC1 /* SearchData.swift */; };
 		5883E66A296C2736009BFA44 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883E669296C2736009BFA44 /* AppDelegate.swift */; };
 		5883E66C296C2736009BFA44 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883E66B296C2736009BFA44 /* SceneDelegate.swift */; };
 		5883E66E296C2736009BFA44 /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883E66D296C2736009BFA44 /* TabBarVC.swift */; };
@@ -31,7 +34,6 @@
 		5883E6CE296C4F8A009BFA44 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883E6CD296C4F8A009BFA44 /* HomeVC.swift */; };
 		5883E6D0296C4FA0009BFA44 /* FavoriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883E6CF296C4FA0009BFA44 /* FavoriteVC.swift */; };
 		5883E6D2296C4FB0009BFA44 /* PlayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883E6D1296C4FB0009BFA44 /* PlayVC.swift */; };
-		5883E6D4296C4FC1009BFA44 /* DownloadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883E6D3296C4FC1009BFA44 /* DownloadVC.swift */; };
 		5883E6D6296C4FD4009BFA44 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883E6D5296C4FD4009BFA44 /* ProfileVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,8 +43,11 @@
 		0136EE712970F1E500388CA0 /* APIRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestManager.swift; sourceTree = "<group>"; };
 		0136EE732970F38700388CA0 /* UserProfileData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileData.swift; sourceTree = "<group>"; };
 		0136EE7529710AFC00388CA0 /* TrackData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackData.swift; sourceTree = "<group>"; };
+		0136EE772972FD9500388CA0 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
+		0136EE7A2973817800388CA0 /* SearchResultsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsVC.swift; sourceTree = "<group>"; };
 		019B9EE0296F4CDF00E7577B /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		019B9EE2296F57CE00E7577B /* AuthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVC.swift; sourceTree = "<group>"; };
+		01B9E9F72973927E00413CC1 /* SearchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchData.swift; sourceTree = "<group>"; };
 		5883E666296C2736009BFA44 /* MusicApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5883E669296C2736009BFA44 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5883E66B296C2736009BFA44 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,7 +67,6 @@
 		5883E6CD296C4F8A009BFA44 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		5883E6CF296C4FA0009BFA44 /* FavoriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVC.swift; sourceTree = "<group>"; };
 		5883E6D1296C4FB0009BFA44 /* PlayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayVC.swift; sourceTree = "<group>"; };
-		5883E6D3296C4FC1009BFA44 /* DownloadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadVC.swift; sourceTree = "<group>"; };
 		5883E6D5296C4FD4009BFA44 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,6 +81,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0136EE792973807A00388CA0 /* Secondary */ = {
+			isa = PBXGroup;
+			children = (
+				019B9EE2296F57CE00E7577B /* AuthVC.swift */,
+				0136EE7A2973817800388CA0 /* SearchResultsVC.swift */,
+			);
+			path = Secondary;
+			sourceTree = "<group>";
+		};
 		5883E65D296C2736009BFA44 = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +126,7 @@
 				0136EE6D2970B1F100388CA0 /* AuthResponseData.swift */,
 				0136EE732970F38700388CA0 /* UserProfileData.swift */,
 				0136EE7529710AFC00388CA0 /* TrackData.swift */,
+				01B9E9F72973927E00413CC1 /* SearchData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -120,14 +134,14 @@
 		5883E681296C2849009BFA44 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0136EE792973807A00388CA0 /* Secondary */,
 				5883E66D296C2736009BFA44 /* TabBarVC.swift */,
 				5883E6CD296C4F8A009BFA44 /* HomeVC.swift */,
 				5883E6CF296C4FA0009BFA44 /* FavoriteVC.swift */,
 				5883E6D1296C4FB0009BFA44 /* PlayVC.swift */,
-				5883E6D3296C4FC1009BFA44 /* DownloadVC.swift */,
 				5883E6D5296C4FD4009BFA44 /* ProfileVC.swift */,
-				019B9EE2296F57CE00E7577B /* AuthVC.swift */,
 				0136EE6F2970D6D400388CA0 /* LoginVC.swift */,
+				0136EE772972FD9500388CA0 /* SearchVC.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -279,10 +293,10 @@
 				0136EE6E2970B1F100388CA0 /* AuthResponseData.swift in Sources */,
 				5883E6D6296C4FD4009BFA44 /* ProfileVC.swift in Sources */,
 				0136EE702970D6D400388CA0 /* LoginVC.swift in Sources */,
+				0136EE7B2973817800388CA0 /* SearchResultsVC.swift in Sources */,
 				019B9EE3296F57CE00E7577B /* AuthVC.swift in Sources */,
 				5883E689296C2F8F009BFA44 /* Constants.swift in Sources */,
 				5883E6CE296C4F8A009BFA44 /* HomeVC.swift in Sources */,
-				5883E6D4296C4FC1009BFA44 /* DownloadVC.swift in Sources */,
 				5883E6D2296C4FB0009BFA44 /* PlayVC.swift in Sources */,
 				5883E66E296C2736009BFA44 /* TabBarVC.swift in Sources */,
 				5883E66A296C2736009BFA44 /* AppDelegate.swift in Sources */,
@@ -290,8 +304,10 @@
 				5883E6D0296C4FA0009BFA44 /* FavoriteVC.swift in Sources */,
 				019B9EE1296F4CDF00E7577B /* AuthManager.swift in Sources */,
 				0136EE722970F1E500388CA0 /* APIRequestManager.swift in Sources */,
+				01B9E9F82973927E00413CC1 /* SearchData.swift in Sources */,
 				5883E66C296C2736009BFA44 /* SceneDelegate.swift in Sources */,
 				5883E674296C2736009BFA44 /* MusicApp.xcdatamodeld in Sources */,
+				0136EE782972FD9500388CA0 /* SearchVC.swift in Sources */,
 				0136EE7629710AFC00388CA0 /* TrackData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

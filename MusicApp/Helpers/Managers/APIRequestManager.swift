@@ -33,6 +33,31 @@ final class APIRequestManager {
         }
     }
     
+    // MARK: - Search track
+    
+    public func searchTrack(with: String, completion: @escaping (Result<SearchData, Error>) -> Void) {
+        createRequest(with: URL(string: K.API.baseAPIURL + "/search?limit=2&type=track&q=\(with.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" )"), type: .GET) { baseRequest in
+            //print(baseRequest.url?.absoluteString ?? "No request")
+            URLSession.shared.dataTask(with: baseRequest) { data, _, error in
+                guard let data = data, error == nil else {
+                    completion(.failure(APIError.failedToGetData))
+                    return
+                }
+                
+                do {
+                    //let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                    let result = try JSONDecoder().decode(SearchData.self, from: data)
+                    completion(.success(result))
+                } catch {
+                    print(error.localizedDescription)
+                    completion(.failure(error))
+                }
+                
+            }.resume()
+        }
+    }
+    
+    // MARK: - User profile
     public func gerCurrentUserProfile(completion: @escaping (Result<UserProfileData, Error>) -> Void) {
         createRequest(with: URL(string: K.API.baseAPIURL + "/me"), type: .GET) { baseRequest in
             URLSession.shared.dataTask(with: baseRequest) { data, _, error in
@@ -53,7 +78,8 @@ final class APIRequestManager {
         }
     }
     
-    //MARK - Private
+    //MARK: - Private
+    
     enum APIError: Error {
         case failedToGetData
     }

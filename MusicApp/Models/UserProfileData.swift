@@ -11,6 +11,7 @@ struct UserProfileData: Decodable {
     let display_name: String
     let id: String
     let images: [Image]
+    let email: String
     
 }
 extension UserProfileData {
@@ -18,6 +19,7 @@ extension UserProfileData {
         let url: String
     }
 }
+
 
 //
 //    country = IN;
