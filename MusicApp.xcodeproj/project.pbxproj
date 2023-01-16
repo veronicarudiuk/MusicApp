@@ -38,8 +38,7 @@
 		5883E6D0296C4FA0009BFA44 /* FavoriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883E6CF296C4FA0009BFA44 /* FavoriteVC.swift */; };
 		5883E6D2296C4FB0009BFA44 /* PlayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883E6D1296C4FB0009BFA44 /* PlayVC.swift */; };
 		5883E6D6296C4FD4009BFA44 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883E6D5296C4FD4009BFA44 /* ProfileVC.swift */; };
-		868539B4296F0EE4007A1871 /* TutorialFirstScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868539B3296F0EE4007A1871 /* TutorialFirstScreenVC.swift */; };
-		868539B629703968007A1871 /* TutorialLastScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868539B529703968007A1871 /* TutorialLastScreenVC.swift */; };
+		86C985B4297460F300E27CD6 /* TutorialScreensVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C985B3297460F300E27CD6 /* TutorialScreensVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,8 +75,7 @@
 		5883E6CF296C4FA0009BFA44 /* FavoriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVC.swift; sourceTree = "<group>"; };
 		5883E6D1296C4FB0009BFA44 /* PlayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayVC.swift; sourceTree = "<group>"; };
 		5883E6D5296C4FD4009BFA44 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
-		868539B3296F0EE4007A1871 /* TutorialFirstScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialFirstScreenVC.swift; sourceTree = "<group>"; };
-		868539B529703968007A1871 /* TutorialLastScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialLastScreenVC.swift; sourceTree = "<group>"; };
+		86C985B3297460F300E27CD6 /* TutorialScreensVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialScreensVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,8 +161,7 @@
 				5883E6D5296C4FD4009BFA44 /* ProfileVC.swift */,
 				0136EE6F2970D6D400388CA0 /* LoginVC.swift */,
 				0136EE772972FD9500388CA0 /* SearchVC.swift */,
-				868539B3296F0EE4007A1871 /* TutorialFirstScreenVC.swift */,
-				868539B529703968007A1871 /* TutorialLastScreenVC.swift */,
+				86C985B3297460F300E27CD6 /* TutorialScreensVC.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -315,15 +312,14 @@
 			files = (
 				0136EE6E2970B1F100388CA0 /* AuthResponseData.swift in Sources */,
 				5883E6D6296C4FD4009BFA44 /* ProfileVC.swift in Sources */,
+				86C985B4297460F300E27CD6 /* TutorialScreensVC.swift in Sources */,
 				0136EE702970D6D400388CA0 /* LoginVC.swift in Sources */,
 				0136EE7B2973817800388CA0 /* SearchResultsVC.swift in Sources */,
 				019B9EE3296F57CE00E7577B /* AuthVC.swift in Sources */,
 				5883E689296C2F8F009BFA44 /* Constants.swift in Sources */,
-				868539B629703968007A1871 /* TutorialLastScreenVC.swift in Sources */,
 				5883E6CE296C4F8A009BFA44 /* HomeVC.swift in Sources */,
 				5883E6D2296C4FB0009BFA44 /* PlayVC.swift in Sources */,
 				019D2B7B2973E76700770F27 /* ArtistData.swift in Sources */,
-				868539B4296F0EE4007A1871 /* TutorialFirstScreenVC.swift in Sources */,
 				5883E66E296C2736009BFA44 /* TabBarVC.swift in Sources */,
 				019D2B782973CF5A00770F27 /* SearchTableViewCell.swift in Sources */,
 				5883E66A296C2736009BFA44 /* AppDelegate.swift in Sources */,
