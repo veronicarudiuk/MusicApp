@@ -40,6 +40,12 @@
 		5883E6D6296C4FD4009BFA44 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883E6D5296C4FD4009BFA44 /* ProfileVC.swift */; };
 		868539B4296F0EE4007A1871 /* TutorialFirstScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868539B3296F0EE4007A1871 /* TutorialFirstScreenVC.swift */; };
 		868539B629703968007A1871 /* TutorialLastScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868539B529703968007A1871 /* TutorialLastScreenVC.swift */; };
+		AA73E36F297710BA00989DC8 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA73E36E297710BA00989DC8 /* MainScreen.swift */; };
+		AA73E3722977117800989DC8 /* RecentlyPlayedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA73E3712977117800989DC8 /* RecentlyPlayedVC.swift */; };
+		AA73E3742977119A00989DC8 /* MusicTestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA73E3732977119A00989DC8 /* MusicTestData.swift */; };
+		AA73E376297711C000989DC8 /* RecentlyPlayCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA73E375297711C000989DC8 /* RecentlyPlayCellView.swift */; };
+		AA73E379297711F500989DC8 /* TabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA73E378297711F500989DC8 /* TabsView.swift */; };
+		AA73E37B2977123B00989DC8 /* TabCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA73E37A2977123B00989DC8 /* TabCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +84,12 @@
 		5883E6D5296C4FD4009BFA44 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		868539B3296F0EE4007A1871 /* TutorialFirstScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialFirstScreenVC.swift; sourceTree = "<group>"; };
 		868539B529703968007A1871 /* TutorialLastScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialLastScreenVC.swift; sourceTree = "<group>"; };
+		AA73E36E297710BA00989DC8 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
+		AA73E3712977117800989DC8 /* RecentlyPlayedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyPlayedVC.swift; sourceTree = "<group>"; };
+		AA73E3732977119A00989DC8 /* MusicTestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicTestData.swift; sourceTree = "<group>"; };
+		AA73E375297711C000989DC8 /* RecentlyPlayCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyPlayCellView.swift; sourceTree = "<group>"; };
+		AA73E378297711F500989DC8 /* TabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsView.swift; sourceTree = "<group>"; };
+		AA73E37A2977123B00989DC8 /* TabCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +177,7 @@
 				0136EE772972FD9500388CA0 /* SearchVC.swift */,
 				868539B3296F0EE4007A1871 /* TutorialFirstScreenVC.swift */,
 				868539B529703968007A1871 /* TutorialLastScreenVC.swift */,
+				AA73E36D2977109C00989DC8 /* MainScreen */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -234,6 +247,35 @@
 				5883E6B4296C310E009BFA44 /* Inter-SemiBold.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		AA73E36D2977109C00989DC8 /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				AA73E36E297710BA00989DC8 /* MainScreen.swift */,
+				AA73E377297711DC00989DC8 /* MenuTabs */,
+				AA73E3702977115100989DC8 /* RecentlyPlayed */,
+			);
+			path = MainScreen;
+			sourceTree = "<group>";
+		};
+		AA73E3702977115100989DC8 /* RecentlyPlayed */ = {
+			isa = PBXGroup;
+			children = (
+				AA73E3712977117800989DC8 /* RecentlyPlayedVC.swift */,
+				AA73E3732977119A00989DC8 /* MusicTestData.swift */,
+				AA73E375297711C000989DC8 /* RecentlyPlayCellView.swift */,
+			);
+			path = RecentlyPlayed;
+			sourceTree = "<group>";
+		};
+		AA73E377297711DC00989DC8 /* MenuTabs */ = {
+			isa = PBXGroup;
+			children = (
+				AA73E378297711F500989DC8 /* TabsView.swift */,
+				AA73E37A2977123B00989DC8 /* TabCell.swift */,
+			);
+			path = MenuTabs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,6 +357,7 @@
 			files = (
 				0136EE6E2970B1F100388CA0 /* AuthResponseData.swift in Sources */,
 				5883E6D6296C4FD4009BFA44 /* ProfileVC.swift in Sources */,
+				AA73E379297711F500989DC8 /* TabsView.swift in Sources */,
 				0136EE702970D6D400388CA0 /* LoginVC.swift in Sources */,
 				0136EE7B2973817800388CA0 /* SearchResultsVC.swift in Sources */,
 				019B9EE3296F57CE00E7577B /* AuthVC.swift in Sources */,
@@ -323,9 +366,14 @@
 				5883E6CE296C4F8A009BFA44 /* HomeVC.swift in Sources */,
 				5883E6D2296C4FB0009BFA44 /* PlayVC.swift in Sources */,
 				019D2B7B2973E76700770F27 /* ArtistData.swift in Sources */,
+				AA73E3742977119A00989DC8 /* MusicTestData.swift in Sources */,
 				868539B4296F0EE4007A1871 /* TutorialFirstScreenVC.swift in Sources */,
 				5883E66E296C2736009BFA44 /* TabBarVC.swift in Sources */,
+				AA73E36F297710BA00989DC8 /* MainScreen.swift in Sources */,
+				AA73E3722977117800989DC8 /* RecentlyPlayedVC.swift in Sources */,
 				019D2B782973CF5A00770F27 /* SearchTableViewCell.swift in Sources */,
+				AA73E37B2977123B00989DC8 /* TabCell.swift in Sources */,
+				AA73E376297711C000989DC8 /* RecentlyPlayCellView.swift in Sources */,
 				5883E66A296C2736009BFA44 /* AppDelegate.swift in Sources */,
 				0136EE742970F38700388CA0 /* UserProfileData.swift in Sources */,
 				019D2B7D2973E77E00770F27 /* AlbumData.swift in Sources */,
