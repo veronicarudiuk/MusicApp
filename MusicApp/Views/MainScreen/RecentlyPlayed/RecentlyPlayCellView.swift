@@ -27,7 +27,7 @@ class RecentlyPlayCellView: UIView {
 
   lazy var albumCoverImage: UIImageView = {
     let contentView = UIImageView(frame: CGRect(x: 10, y: 10, width: 70, height: 70))
-    contentView.image = UIImage(named: "album")
+    contentView.image = UIImage(named: "DefaultAlbumIMG")
     contentView.layer.cornerRadius = 5
     contentView.layer.masksToBounds = true
     return contentView

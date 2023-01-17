@@ -17,13 +17,13 @@ struct MusicData {
 }
 
 var testData = [
-  MusicData(songName: "Latina", albumName: "Shakira album 1", singerName: "Shakira", albumCover: UIImage(named: "album"),songLength: 186, playedLength: 140),
-  MusicData(songName: "Coolsong", albumName: "Ramasoti album 1", singerName: "Sting", albumCover: UIImage(named: "album"),songLength: 430, playedLength: 310),
-  MusicData(songName: "Dr Dre", albumName: "Dre dre album2", singerName: "Eminem", albumCover: UIImage(named: "album"),songLength: 55, playedLength: 44)
+  MusicData(songName: "Latina", albumName: "Shakira album 1", singerName: "Shakira", albumCover: UIImage(named: "TutorImg1"),songLength: 186, playedLength: 140),
+  MusicData(songName: "Coolsong", albumName: "Ramasoti album 1", singerName: "Sting", albumCover: UIImage(named: "TutorImg1"),songLength: 430, playedLength: 310),
+  MusicData(songName: "Dr Dre", albumName: "Dre dre album2", singerName: "Eminem", albumCover: UIImage(named: "TutorImg1"),songLength: 55, playedLength: 44)
 ]
 
 var testData2 = [
-  MusicData(songName: "Latina", albumName: "Shakira album 1", singerName: "Shakira", albumCover: UIImage(named: "album"),songLength: 186, playedLength: 140),
-  MusicData(songName: "Coolsong", albumName: "Ramasoti album 1", singerName: "Sting", albumCover: UIImage(named: "album"),songLength: 430, playedLength: 310),
+  MusicData(songName: "Latina", albumName: "Shakira album 1", singerName: "Shakira", albumCover: UIImage(named: "TutorImg1"),songLength: 186, playedLength: 140),
+  MusicData(songName: "Coolsong", albumName: "Ramasoti album 1", singerName: "Sting", albumCover: UIImage(named: "TutorImg1"),songLength: 430, playedLength: 310),
 ]
 
