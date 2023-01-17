@@ -47,15 +47,22 @@ class SearchResultsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         cell.artistNameLabel.text = results?.tracks.items[indexPath.row].artists[0].name
         cell.backgroundColor = .clear
         
-        if let dishImage = results?.tracks.items[indexPath.row].album.images[0].url {
+        guard let dishImage = results?.tracks.items[indexPath.row].album.images[0].url else { return cell }
+        
+        if let cachedImage = ImageCache.shared.take(with: dishImage) {
+            cell.albumImage.image = cachedImage
+            return cell
+        }
             guard let apiURL = URL(string: dishImage) else { return cell }
             URLSession.shared.dataTask(with: apiURL) { data, _, _ in
                 guard let data = data else { return }
+                guard let seccessImage = UIImage(data: data) else { return }
+                ImageCache.shared.put(image: seccessImage, with: dishImage)
                 DispatchQueue.main.async {
-                    cell.albumImage.image = UIImage(data: data)
+                    cell.albumImage.image = seccessImage
                 }
             } .resume()
-        }
+        
         return cell
     }
     
