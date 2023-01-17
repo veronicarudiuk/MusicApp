@@ -4,12 +4,13 @@
 //
 //  Created by Марс Мазитов on 15.01.2023.
 //
-
+import AVFoundation
 import UIKit
 
 class SearchResultsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     private var results: SearchData?
+    var player: AVPlayer?
     
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -46,20 +47,33 @@ class SearchResultsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         cell.artistNameLabel.text = results?.tracks.items[indexPath.row].artists[0].name
         cell.backgroundColor = .clear
         
-        if let dishImage = results?.tracks.items[indexPath.row].album.images[0].url {
+        guard let dishImage = results?.tracks.items[indexPath.row].album.images[0].url else { return cell }
+        
+        if let cachedImage = ImageCache.shared.take(with: dishImage) {
+            cell.albumImage.image = cachedImage
+            return cell
+        }
             guard let apiURL = URL(string: dishImage) else { return cell }
             URLSession.shared.dataTask(with: apiURL) { data, _, _ in
                 guard let data = data else { return }
+                guard let seccessImage = UIImage(data: data) else { return }
+                ImageCache.shared.put(image: seccessImage, with: dishImage)
                 DispatchQueue.main.async {
-                    cell.albumImage.image = UIImage(data: data)
+                    cell.albumImage.image = seccessImage
                 }
             } .resume()
-        }
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        guard let url = URL(string: results?.tracks.items[indexPath.row].preview_url ?? "") else { return }
+        print(url)
+        player?.pause()
+        player = AVPlayer(url: url)
+        player?.play()
+        player?.volume = 1
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
