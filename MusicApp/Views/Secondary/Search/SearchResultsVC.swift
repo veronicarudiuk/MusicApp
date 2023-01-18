@@ -57,13 +57,10 @@ class SearchResultsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let url = URL(string: viewModel?.tracks?.tracks.items[indexPath.row].preview_url ?? "") else { return }
-        print(url)
-        player?.pause()
-        player = AVPlayer(url: url)
-        player?.play()
-        player?.volume = 1
+        guard let track = viewModel?.tracks?.tracks.items[indexPath.row] else { return }
+        PlaybackManager.shared.setTrack(track)
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
     }
