@@ -9,7 +9,7 @@ import UIKit
 
 class SearchTableViewCell: UITableViewCell {
     static let identifier = "SearchResultCell"
-    
+
     let trackNameLabel: UILabel = {
         let label = UILabel()
         label.lineBreakMode = NSLineBreakMode.byWordWrapping

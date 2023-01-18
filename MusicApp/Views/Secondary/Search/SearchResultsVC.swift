@@ -9,12 +9,17 @@ import UIKit
 
 class SearchResultsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    private var results: SearchData?
+    var viewModel: SearchVCViewModel?
+    {
+        willSet {
+            tableView.reloadData()
+        }
+    }
+    
     var player: AVPlayer?
     
     private let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.isHidden = true
         tableView.backgroundColor = UIColor(named: K.BrandColors.darkBG)
         return tableView
     }()
@@ -26,28 +31,20 @@ class SearchResultsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        //setupUI()
         tableView.frame = view.bounds
     }
     
-    func update(with results: SearchData) {
-        self.results = results
-        //guard let safeResults = self.results else { return }
-        tableView.isHidden = false
-        tableView.reloadData()
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return results?.tracks.items.count ?? 1
+        return viewModel?.numberOfRowsInSection() ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.identifier, for: indexPath) as? SearchTableViewCell else { fatalError() }
-        cell.trackNameLabel.text = results?.tracks.items[indexPath.row].name
-        cell.artistNameLabel.text = results?.tracks.items[indexPath.row].artists[0].name
+        cell.trackNameLabel.text = viewModel?.tracks?.tracks.items[indexPath.row].name
+        cell.artistNameLabel.text = viewModel?.tracks?.tracks.items[indexPath.row].artists[0].name
         cell.backgroundColor = .clear
         
-        guard let dishImage = results?.tracks.items[indexPath.row].album.images[0].url else { return cell }
+        guard let dishImage = viewModel?.tracks?.tracks.items[indexPath.row].album.images[0].url else { return cell }
         
         cachedImage(url: dishImage) { image in
             DispatchQueue.main.async {
@@ -60,7 +57,7 @@ class SearchResultsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let url = URL(string: results?.tracks.items[indexPath.row].preview_url ?? "") else { return }
+        guard let url = URL(string: viewModel?.tracks?.tracks.items[indexPath.row].preview_url ?? "") else { return }
         print(url)
         player?.pause()
         player = AVPlayer(url: url)

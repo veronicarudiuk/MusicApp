@@ -20,6 +20,7 @@
 		019D2B782973CF5A00770F27 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019D2B772973CF5A00770F27 /* SearchTableViewCell.swift */; };
 		019D2B7B2973E76700770F27 /* ArtistData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019D2B7A2973E76700770F27 /* ArtistData.swift */; };
 		019D2B7D2973E77E00770F27 /* AlbumData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019D2B7C2973E77E00770F27 /* AlbumData.swift */; };
+		01B8E93C29783E17004AFA77 /* SearchVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B8E93B29783E17004AFA77 /* SearchVCViewModel.swift */; };
 		01B9E9F82973927E00413CC1 /* SearchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B9E9F72973927E00413CC1 /* SearchData.swift */; };
 		5883E66A296C2736009BFA44 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883E669296C2736009BFA44 /* AppDelegate.swift */; };
 		5883E66C296C2736009BFA44 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883E66B296C2736009BFA44 /* SceneDelegate.swift */; };
@@ -57,6 +58,7 @@
 		019D2B772973CF5A00770F27 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		019D2B7A2973E76700770F27 /* ArtistData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistData.swift; sourceTree = "<group>"; };
 		019D2B7C2973E77E00770F27 /* AlbumData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumData.swift; sourceTree = "<group>"; };
+		01B8E93B29783E17004AFA77 /* SearchVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchVCViewModel.swift; path = MusicApp/SearchVCViewModel.swift; sourceTree = SOURCE_ROOT; };
 		01B9E9F72973927E00413CC1 /* SearchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchData.swift; sourceTree = "<group>"; };
 		5883E666296C2736009BFA44 /* MusicApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5883E669296C2736009BFA44 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 		5883E682296C284E009BFA44 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				01B8E93B29783E17004AFA77 /* SearchVCViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 				019D2B782973CF5A00770F27 /* SearchTableViewCell.swift in Sources */,
 				5883E66A296C2736009BFA44 /* AppDelegate.swift in Sources */,
 				0136EE742970F38700388CA0 /* UserProfileData.swift in Sources */,
+				01B8E93C29783E17004AFA77 /* SearchVCViewModel.swift in Sources */,
 				019D2B7D2973E77E00770F27 /* AlbumData.swift in Sources */,
 				5883E6D0296C4FA0009BFA44 /* FavoriteVC.swift in Sources */,
 				019B9EE1296F4CDF00E7577B /* AuthManager.swift in Sources */,
