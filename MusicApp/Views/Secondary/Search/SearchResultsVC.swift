@@ -49,19 +49,11 @@ class SearchResultsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         guard let dishImage = results?.tracks.items[indexPath.row].album.images[0].url else { return cell }
         
-        if let cachedImage = ImageCache.shared.take(with: dishImage) {
-            cell.albumImage.image = cachedImage
-            return cell
+        cachedImage(url: dishImage) { image in
+            DispatchQueue.main.async {
+                cell.albumImage.image = image
+            }
         }
-            guard let apiURL = URL(string: dishImage) else { return cell }
-            URLSession.shared.dataTask(with: apiURL) { data, _, _ in
-                guard let data = data else { return }
-                guard let seccessImage = UIImage(data: data) else { return }
-                ImageCache.shared.put(image: seccessImage, with: dishImage)
-                DispatchQueue.main.async {
-                    cell.albumImage.image = seccessImage
-                }
-            } .resume()
         
         return cell
     }
