@@ -8,6 +8,7 @@
 import UIKit
 
 class PlayVC: UIViewController {
+    var viewModel = PlayVCViewModel()
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -142,7 +143,7 @@ class PlayVC: UIViewController {
     
     private lazy var timePassedLabel: UILabel = {
         let label = UILabel()
-        label.text = "1:30"
+        label.text = "0:00"
         label.textColor = .white
         label.font = UIFont(name: K.Fonts.interRegular, size: 11)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -161,8 +162,8 @@ class PlayVC: UIViewController {
     private lazy var rewindButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(named: "RewindIcon"), for: .normal)
-//        добавить действие
-//        button.addTarget(target, action: #selector(heartButtonPressed(_:)), for: .touchUpInside)
+        //        добавить действие
+        //        button.addTarget(target, action: #selector(heartButtonPressed(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -179,16 +180,44 @@ class PlayVC: UIViewController {
     private lazy var fastForwardButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(named: "FastForwardIcon"), for: .normal)
-//        добавить действие
-//        button.addTarget(target, action: #selector(heartButtonPressed(_:)), for: .touchUpInside)
+        //        добавить действие
+        //        button.addTarget(target, action: #selector(heartButtonPressed(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+    //MARK: - viewWillAppear
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        DispatchQueue.main.async {
+            var _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+                self.timePassedLabel.text = self.viewModel.currentTrackTime
+            }
+            var _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+                if self.viewModel.progress != 0 {
+                    self.progressBar.progress = Float(self.viewModel.progress)
+
+                }
+            }
+            
+            self.songNameLabel.text = self.viewModel.songName
+            self.albumNameLabel.text = self.viewModel.albumName
+            self.musicianNameLabel.text = self.viewModel.artistName
+            self.playButton.isSelected = !self.viewModel.isPlaying
+            self.timeLeftLabel.text = self.viewModel.trackDuration
+        }
+        self.cachedImage(url: self.viewModel.songImage) { [weak self] image in
+            DispatchQueue.main.async {
+                self?.songImage.image = image
+            }
+        }
+    }
     
     //MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        PlaybackManager.shared.delegateVC = self
         setupConstraints()
     }
     
@@ -199,7 +228,8 @@ class PlayVC: UIViewController {
     
     //MARK: - playButtonAction
     @objc func playButtonPressed(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
+        sender.isSelected = viewModel.isPlaying
+        viewModel.pause()
     }
 }
 
@@ -249,7 +279,7 @@ extension PlayVC {
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-
+            
             horisontalScrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
             horisontalScrollView.heightAnchor.constraint(equalToConstant: 396),
             horisontalScrollView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
@@ -263,7 +293,7 @@ extension PlayVC {
             horisontalСontentView.widthAnchor.constraint(equalToConstant: (CGFloat(view.frame.width) * 2)),
             horisontalСontentView.topAnchor.constraint(equalTo: scrollFrameGuide.topAnchor),
             horisontalСontentView.bottomAnchor.constraint(equalTo: scrollFrameGuide.bottomAnchor),
-              
+            
             songImage.topAnchor.constraint(equalTo: horisontalСontentView.topAnchor),
             songImage.leadingAnchor.constraint(equalTo: horisontalСontentView.leadingAnchor, constant: 21),
             songImage.heightAnchor.constraint(equalTo: horisontalСontentView.heightAnchor),
@@ -278,7 +308,7 @@ extension PlayVC {
             lyricsLabel.widthAnchor.constraint(equalTo: lyricsScrollView.widthAnchor),
             lyricsLabel.topAnchor.constraint(equalTo: lyricsScrollView.topAnchor),
             lyricsLabel.bottomAnchor.constraint(equalTo: lyricsScrollView.bottomAnchor),
-
+            
             pageControl.topAnchor.constraint(equalTo: horisontalScrollView.bottomAnchor, constant: 10),
             pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
