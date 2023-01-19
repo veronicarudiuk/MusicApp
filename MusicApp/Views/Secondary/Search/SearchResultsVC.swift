@@ -45,13 +45,13 @@ class SearchResultsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         cell.backgroundColor = .clear
         
         guard let dishImage = viewModel?.tracks?.tracks.items[indexPath.row].album.images[0].url else { return cell }
-        
+        cell.loadingSpinner.startAnimating()
         cachedImage(url: dishImage) { image in
             DispatchQueue.main.async {
                 cell.albumImage.image = image
+                cell.loadingSpinner.stopAnimating()
             }
         }
-        
         return cell
     }
     

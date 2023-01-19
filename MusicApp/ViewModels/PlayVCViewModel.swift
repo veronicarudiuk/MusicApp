@@ -43,12 +43,15 @@ class PlayVCViewModel {
         return "0:\(String(describing: Int(time)))"
     }
     
-    var trackDuration: String {
+    var trackDuration: String? {
         guard let time = PlaybackManager.shared.trackDuration else { return "0"}
+        
         if time < 10 {
             return "0:\(String(describing: Int(time)))"
+        } else if time >= 0 {
+            return "0:\(String(describing: Int(time)))"
         }
-        return "0:\(String(describing: Int(time)))"
+        return nil
     }
     
     func resume(for track: TrackData) {
