@@ -14,10 +14,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // Показывает 1 раз при первом использовании приложении
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        
+
         UserDefaults.standard.set(false, forKey: "SEEN-TUTORIAL")
-        
         let seenTutorial = UserDefaults.standard.bool(forKey: "SEEN-TUTORIAL")
         let rootViewController = seenTutorial ? AuthManager.shared.choosePresentingVC() : TutorialScreensVC()
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
         window?.windowScene = windowScene
-        
+
         AuthManager.shared.refreshAccessToken { success in
             print("🟨🟨 Token is refreshed or refresh is not needed: \(success)")
         }

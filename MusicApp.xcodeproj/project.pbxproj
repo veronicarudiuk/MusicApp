@@ -38,6 +38,7 @@
 		5883E6D0296C4FA0009BFA44 /* FavoriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883E6CF296C4FA0009BFA44 /* FavoriteVC.swift */; };
 		5883E6D2296C4FB0009BFA44 /* PlayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883E6D1296C4FB0009BFA44 /* PlayVC.swift */; };
 		5883E6D6296C4FD4009BFA44 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883E6D5296C4FD4009BFA44 /* ProfileVC.swift */; };
+		865212992979D54F0086E6A6 /* Privacy Policy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865212982979D54F0086E6A6 /* Privacy Policy.swift */; };
 		86C985B4297460F300E27CD6 /* TutorialScreensVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C985B3297460F300E27CD6 /* TutorialScreensVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +76,7 @@
 		5883E6CF296C4FA0009BFA44 /* FavoriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVC.swift; sourceTree = "<group>"; };
 		5883E6D1296C4FB0009BFA44 /* PlayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayVC.swift; sourceTree = "<group>"; };
 		5883E6D5296C4FD4009BFA44 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		865212982979D54F0086E6A6 /* Privacy Policy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Privacy Policy.swift"; path = "MusicApp/Helpers/Privacy Policy.swift"; sourceTree = SOURCE_ROOT; };
 		86C985B3297460F300E27CD6 /* TutorialScreensVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialScreensVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -208,6 +210,7 @@
 				5883E684296C2886009BFA44 /* Managers */,
 				5883E687296C2F67009BFA44 /* Extensions */,
 				5883E688296C2F8F009BFA44 /* Constants.swift */,
+				865212982979D54F0086E6A6 /* Privacy Policy.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 				5883E6D6296C4FD4009BFA44 /* ProfileVC.swift in Sources */,
 				86C985B4297460F300E27CD6 /* TutorialScreensVC.swift in Sources */,
 				0136EE702970D6D400388CA0 /* LoginVC.swift in Sources */,
+				865212992979D54F0086E6A6 /* Privacy Policy.swift in Sources */,
 				0136EE7B2973817800388CA0 /* SearchResultsVC.swift in Sources */,
 				019B9EE3296F57CE00E7577B /* AuthVC.swift in Sources */,
 				5883E689296C2F8F009BFA44 /* Constants.swift in Sources */,
