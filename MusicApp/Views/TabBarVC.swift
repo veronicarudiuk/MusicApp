@@ -20,7 +20,7 @@ class TabBarVC: UITabBarController {
     
     func setupVCs() {
         viewControllers = [
-            createNavController(for: MainScreen(), image: UIImage(named: "HomeInactive")!, selectedImage: UIImage(named: "HomeActive")!),
+            createNavController(for: HomeVC(), image: UIImage(named: "HomeInactive")!, selectedImage: UIImage(named: "HomeActive")!),
             createNavController(for: FavoriteVC(), image: UIImage(named: "FavoriteInctive")!, selectedImage: UIImage(named: "FavoriteActive")!),
             createNavController(for: PlayVC(), image: UIImage(named: "PlayInactive")!, selectedImage: UIImage(named: "PlayActive")!),
             createNavController(for: SearchVC(), image: UIImage(named: "SearchInactive")!, selectedImage: UIImage(named: "SearchActive")!),
