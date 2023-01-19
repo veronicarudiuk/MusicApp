@@ -9,6 +9,12 @@ import UIKit
 
 class SearchTableViewCell: UITableViewCell {
     static let identifier = "SearchResultCell"
+
+    let loadingSpinner: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView()
+        spinner.style = .large
+        return spinner
+    }()
     
     let trackNameLabel: UILabel = {
         let label = UILabel()
@@ -64,7 +70,7 @@ class SearchTableViewCell: UITableViewCell {
     
     //MARK: - Private UI setup methods
     private func setupCell() {
-        [albumImage, trackNameLabel, artistNameLabel, rightArrowImage].forEach {
+        [albumImage, trackNameLabel, artistNameLabel, rightArrowImage, loadingSpinner].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             contentView.addSubview($0)
         }
@@ -74,6 +80,11 @@ class SearchTableViewCell: UITableViewCell {
             albumImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 22),
             albumImage.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
             albumImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -290),
+            
+            loadingSpinner.topAnchor.constraint(equalTo: topAnchor),
+            loadingSpinner.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 22),
+            loadingSpinner.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
+            loadingSpinner.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -290),
             
             trackNameLabel.leadingAnchor.constraint(equalTo: albumImage.trailingAnchor, constant: 29),
             trackNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 30),

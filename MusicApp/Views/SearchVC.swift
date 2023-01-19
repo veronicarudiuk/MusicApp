@@ -9,6 +9,8 @@ import UIKit
 
 class SearchVC: UIViewController {
     
+    var viewModel = SearchVCViewModel()
+    
     private var searchController: UISearchController  = {
         let searchVC = UISearchController(searchResultsController: SearchResultsVC())
         searchVC.searchBar.placeholder = "Search music"
@@ -61,17 +63,23 @@ extension SearchVC: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let query = searchController.searchBar.text, query != "" else { return }
         guard let resultsController = searchController.searchResultsController as? SearchResultsVC else { return }
-        
         print(query)
-        APIRequestManager.shared.searchTrack(with: query) { result in
+        viewModel.fetchData(withQuery: query) { [weak self] in
             DispatchQueue.main.async {
-                switch result {
-                case .success(let data):
-                    resultsController.update(with: data)
-                case .failure(let error):
-                    print(error)
-                }
+                resultsController.viewModel = self?.viewModel
+               // resultsController.update()
+                
             }
         }
+//        APIRequestManager.shared.searchTrack(with: query) { result in
+//            DispatchQueue.main.async {
+//                switch result {
+//                case .success(let data):
+//                    resultsController.update(with: data)
+//                case .failure(let error):
+//                    print(error)
+//                }
+//            }
+//        }
     }
 }
