@@ -12,6 +12,23 @@ import UIKit
 class PlaybackManager {
     static var shared = PlaybackManager()
     
+    var currentTrackIndex: Int? {
+        didSet {
+            playFromTrackList()
+        }
+    }
+    
+    var trackList: [TrackData]? {
+        didSet {
+            playFromTrackList()
+        }
+    }
+    
+    private func playFromTrackList() {
+        guard let list = trackList else { return }
+        currentTrack = list[currentTrackIndex ?? 0]
+    }
+    
     var delegateVC: UIViewController?
     
     private var player: AVPlayer?
@@ -45,6 +62,17 @@ class PlaybackManager {
         return time
     }
     
+    //перейти в начало трека
+    func toStartTrack() {
+        player?.seek(to: CMTimeMakeWithSeconds(0, preferredTimescale: 1))
+    }
+    
+    func playTrack(playIndex: Int) {
+        guard playIndex != trackList?.count else { return }
+
+        currentTrackIndex = playIndex
+    }
+    
     func setTrack(_ set: TrackData) {
         currentTrack = set
     }
@@ -55,8 +83,6 @@ class PlaybackManager {
     }
     
     func play() {
-        //        print("Current time \(player?.currentTime().seconds)")
-        //        print(player?.currentItem?.duration.seconds)
         isPlaying = true
         player?.play()
     }
