@@ -95,7 +95,7 @@ final class RecentlyPlayedCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             songImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             songImageView.topAnchor.constraint(equalTo: topAnchor, constant: 9),
-            songImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -9),
+            songImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
             songImageView.heightAnchor.constraint(equalToConstant: 71),
             songImageView.widthAnchor.constraint(equalToConstant: 72),
             

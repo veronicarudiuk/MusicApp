@@ -30,19 +30,20 @@ class HomeVC: UIViewController {
     
     // MARK: - Setup UI
     private func setUpTopSection() {
-        var name = ""
+        
         APIRequestManager.shared.gerCurrentUserProfile { result in
             switch result {
             case .success(let model):
-                name = model.display_name
-                print(name)
+                let name = model.display_name
+                DispatchQueue.main.async {
+                    self.titleLabelTop.text = "Hello \(name),"
+                }
                 break
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
         
-        titleLabelTop.text = "Hello \(name),"
         titleLabelTop.textColor = .white
         titleLabelTop.font = UIFont(name: K.Fonts.interSemiBold, size: 16)
         
