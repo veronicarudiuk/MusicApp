@@ -7,10 +7,13 @@
 
 import AVFoundation
 import UIKit
+import CoreData
 
 
 class PlaybackManager {
     static var shared = PlaybackManager()
+    
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var currentTrackIndex: Int? {
         didSet {
@@ -26,7 +29,11 @@ class PlaybackManager {
     
     private func playFromTrackList() {
         guard let list = trackList else { return }
-        currentTrack = list[currentTrackIndex ?? 0]
+        guard let currentTrack = list[currentTrackIndex] else { return }
+        
+        guard let currentTrack = currentTrack else { return }
+        print(currentTrack.name)
+        addTrackToRecentlyPlayed(currentTrack)
     }
     
     var delegateVC: UIViewController?
@@ -75,6 +82,30 @@ class PlaybackManager {
     
     func setTrack(_ set: TrackData) {
         currentTrack = set
+        
+    }
+    
+//    сохраняем трек в контекст кор даты
+    func addTrackToRecentlyPlayed(_ trackData: TrackData) {
+        let newTrack = RecentlyPlayedTracks(context: self.context)
+        newTrack.trackId = trackData.id
+        newTrack.trackName = trackData.name
+        newTrack.albumName = trackData.album.name
+        newTrack.artistName = trackData.artists[0].name
+//        if let time = trackDuration {
+//            newTrack.duration = "0:\(String(describing: Int(time)))"
+//        }
+        newTrack.imageUrl = trackData.album.images[0].url
+        saveItems()
+    }
+    
+//    сохраняем контекст кор даты
+    func saveItems() {
+        do {
+           try context.save()
+        } catch {
+           print("Error saving context \(error)")
+        }
     }
     
     func pause() {

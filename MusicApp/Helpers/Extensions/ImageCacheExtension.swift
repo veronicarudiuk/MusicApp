@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension UIViewController {
+extension NSObject {
     
     func cachedImage(url: String, result: @escaping (UIImage) -> Void) {
         if let cachedImage = NSCache<NSString, UIImage>().object(forKey: url as NSString) {

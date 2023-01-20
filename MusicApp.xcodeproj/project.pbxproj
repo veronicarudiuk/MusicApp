@@ -24,6 +24,8 @@
 		01B8E93E29784D36004AFA77 /* PlaybackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B8E93D29784D36004AFA77 /* PlaybackManager.swift */; };
 		01B8E94129784EDB004AFA77 /* PlayVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B8E94029784EDB004AFA77 /* PlayVCViewModel.swift */; };
 		01B9E9F82973927E00413CC1 /* SearchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B9E9F72973927E00413CC1 /* SearchData.swift */; };
+		58362A11297AEE280011BB17 /* RecentlyPlayedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58362A10297AEE280011BB17 /* RecentlyPlayedViewModel.swift */; };
+		58362A14297AEEA00011BB17 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58362A13297AEEA00011BB17 /* Box.swift */; };
 		587298122977E535005FEE7E /* CAGradientLayer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587298112977E535005FEE7E /* CAGradientLayer+Extension.swift */; };
 		587298152979769A005FEE7E /* PopularSongCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587298142979769A005FEE7E /* PopularSongCollectionView.swift */; };
 		58729817297976F9005FEE7E /* PopularSongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58729816297976F9005FEE7E /* PopularSongCell.swift */; };
@@ -69,6 +71,8 @@
 		01B8E93D29784D36004AFA77 /* PlaybackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackManager.swift; sourceTree = "<group>"; };
 		01B8E94029784EDB004AFA77 /* PlayVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayVCViewModel.swift; sourceTree = "<group>"; };
 		01B9E9F72973927E00413CC1 /* SearchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchData.swift; sourceTree = "<group>"; };
+		58362A10297AEE280011BB17 /* RecentlyPlayedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyPlayedViewModel.swift; sourceTree = "<group>"; };
+		58362A13297AEEA00011BB17 /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 		587298112977E535005FEE7E /* CAGradientLayer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CAGradientLayer+Extension.swift"; sourceTree = "<group>"; };
 		587298142979769A005FEE7E /* PopularSongCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularSongCollectionView.swift; sourceTree = "<group>"; };
 		58729816297976F9005FEE7E /* PopularSongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularSongCell.swift; sourceTree = "<group>"; };
@@ -126,6 +130,22 @@
 				868539B3296F0EE4007A1871 /* TutorialFirstScreenVC.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		58362A0F297AEE090011BB17 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				58362A10297AEE280011BB17 /* RecentlyPlayedViewModel.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		58362A12297AEE8D0011BB17 /* Bindings */ = {
+			isa = PBXGroup;
+			children = (
+				58362A13297AEEA00011BB17 /* Box.swift */,
+			);
+			path = Bindings;
 			sourceTree = "<group>";
 		};
 		5872981329797674005FEE7E /* Home */ = {
@@ -218,6 +238,8 @@
 		5883E682296C284E009BFA44 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				58362A12297AEE8D0011BB17 /* Bindings */,
+				58362A0F297AEE090011BB17 /* Home */,
 				01B8E93B29783E17004AFA77 /* SearchVCViewModel.swift */,
 				01B8E94029784EDB004AFA77 /* PlayVCViewModel.swift */,
 			);
@@ -379,6 +401,7 @@
 				019D2B7B2973E76700770F27 /* ArtistData.swift in Sources */,
 				868539B4296F0EE4007A1871 /* TutorialFirstScreenVC.swift in Sources */,
 				5883E66E296C2736009BFA44 /* TabBarVC.swift in Sources */,
+				58362A11297AEE280011BB17 /* RecentlyPlayedViewModel.swift in Sources */,
 				019D2B782973CF5A00770F27 /* SearchTableViewCell.swift in Sources */,
 				5883E66A296C2736009BFA44 /* AppDelegate.swift in Sources */,
 				0136EE742970F38700388CA0 /* UserProfileData.swift in Sources */,
@@ -392,6 +415,7 @@
 				587298152979769A005FEE7E /* PopularSongCollectionView.swift in Sources */,
 				01B8E93E29784D36004AFA77 /* PlaybackManager.swift in Sources */,
 				5883E66C296C2736009BFA44 /* SceneDelegate.swift in Sources */,
+				58362A14297AEEA00011BB17 /* Box.swift in Sources */,
 				013E4BF629779898006662D9 /* ImageCacheExtension.swift in Sources */,
 				5883E674296C2736009BFA44 /* MusicApp.xcdatamodeld in Sources */,
 				58729817297976F9005FEE7E /* PopularSongCell.swift in Sources */,

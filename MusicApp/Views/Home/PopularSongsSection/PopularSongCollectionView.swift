@@ -31,7 +31,7 @@ final class PopularSongsCollectionView: UICollectionView, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 30
+        return 20
     }
 }
 
