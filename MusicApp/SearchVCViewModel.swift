@@ -35,7 +35,17 @@ class SearchVCViewModel {
         cell.rightArrowImage.image = UIImage(named: "StopActive")
     }
     
+    func chooseButtonIcon(index: Int) -> UIImage {
+            if PlaybackManager.shared.isPlaying == true {
+                if PlaybackManager.shared.currentTrack?.id == tracks?.tracks.items[index].id {
+                    return UIImage(named: "StopActive")!
+                }
+            }
+     
+            return UIImage(named: "PlayIconInactive")!
 
+        }
+    
     func fetchData(withQuery query: String, complition: @escaping() -> ())  {
         APIRequestManager.shared.searchTrack(with: query) { [weak self] result in
             DispatchQueue.main.async {
