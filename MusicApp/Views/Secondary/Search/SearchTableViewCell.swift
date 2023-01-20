@@ -44,7 +44,7 @@ class SearchTableViewCell: UITableViewCell {
     
     let rightArrowImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "RightArrow")
+        imageView.image = UIImage(named: "PlayIconInactive")
         imageView.contentMode = .scaleAspectFit
         imageView.layer.cornerRadius = 5
         return imageView
@@ -94,8 +94,9 @@ class SearchTableViewCell: UITableViewCell {
             artistNameLabel.topAnchor.constraint(equalTo: trackNameLabel.bottomAnchor, constant: 10),
             
             rightArrowImage.centerYAnchor.constraint(equalTo: centerYAnchor),
-            rightArrowImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -22)
-            
+            rightArrowImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -22),
+            rightArrowImage.heightAnchor.constraint(equalToConstant: 26),
+            rightArrowImage.widthAnchor.constraint(equalToConstant: 26)
             
         ])
     }

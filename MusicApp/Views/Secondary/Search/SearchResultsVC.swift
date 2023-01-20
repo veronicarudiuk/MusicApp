@@ -43,9 +43,13 @@ class SearchResultsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         cell.trackNameLabel.text = viewModel?.tracks?.tracks.items[indexPath.row].name
         cell.artistNameLabel.text = viewModel?.tracks?.tracks.items[indexPath.row].artists[0].name
         cell.backgroundColor = .clear
+        cell.rightArrowImage.image = UIImage(named: "PlayIconInactive")
         
+        // выбор иконки
+        cell.rightArrowImage.image = viewModel?.chooseButtonIcon(index: indexPath.row)
         guard let dishImage = viewModel?.tracks?.tracks.items[indexPath.row].album.images[0].url else { return cell }
         cell.loadingSpinner.startAnimating()
+        cell.albumImage.image = .none
         cachedImage(url: dishImage) { image in
             DispatchQueue.main.async {
                 cell.albumImage.image = image
@@ -57,28 +61,11 @@ class SearchResultsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let track = viewModel?.tracks?.tracks.items[indexPath.row] else { return }
-        PlaybackManager.shared.setTrack(track)
+        
+        viewModel?.playFromTrackList(index: indexPath, for: tableView)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
     }
 }
-
-//MARK: - Private UI setup methods
-//extension SearchResultsVC {
-//    private func setupUI() {
-//        view.addSubview(tableView)
-//        tableView.separatorStyle = .none
-//        tableView.allowsSelection = true
-//        tableView.translatesAutoresizingMaskIntoConstraints = false
-//
-//        NSLayoutConstraint.activate([
-//            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-//            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-//        ])
-//    }
-//}
