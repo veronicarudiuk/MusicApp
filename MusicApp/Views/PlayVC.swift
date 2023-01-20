@@ -136,7 +136,7 @@ class PlayVC: UIViewController {
         progress.trackTintColor = UIColor(named: K.BrandColors.lightGray)
         progress.layer.masksToBounds = true
         progress.layer.cornerRadius = 3
-        progress.progress = 0.5
+        progress.progress = 0
         progress.translatesAutoresizingMaskIntoConstraints = false
         return progress
     }()
@@ -152,7 +152,7 @@ class PlayVC: UIViewController {
     
     private lazy var timeLeftLabel: UILabel = {
         let label = UILabel()
-        label.text = "2:30"
+        label.text = "0:00"
         label.textColor = .white
         label.font = UIFont(name: K.Fonts.interRegular, size: 11)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -162,8 +162,7 @@ class PlayVC: UIViewController {
     private lazy var rewindButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(named: "RewindIcon"), for: .normal)
-        //        добавить действие
-        //        button.addTarget(target, action: #selector(heartButtonPressed(_:)), for: .touchUpInside)
+        button.addTarget(target, action: #selector(backButtonPressed(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -180,8 +179,7 @@ class PlayVC: UIViewController {
     private lazy var fastForwardButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(named: "FastForwardIcon"), for: .normal)
-        //        добавить действие
-        //        button.addTarget(target, action: #selector(heartButtonPressed(_:)), for: .touchUpInside)
+        button.addTarget(target, action: #selector(nextButtonPressed(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -189,14 +187,19 @@ class PlayVC: UIViewController {
     //MARK: - viewWillAppear
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        updateView()
+    }
+    
+    private func updateView() {
+        
         DispatchQueue.main.async {
             var _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
                 self.timePassedLabel.text = self.viewModel.currentTrackTime
+                self.timeLeftLabel.text = self.viewModel.trackDuration
             }
             var _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
                 if self.viewModel.progress != 0 {
                     self.progressBar.progress = Float(self.viewModel.progress)
-
                 }
             }
             
@@ -204,21 +207,32 @@ class PlayVC: UIViewController {
             self.albumNameLabel.text = self.viewModel.albumName
             self.musicianNameLabel.text = self.viewModel.artistName
             self.playButton.isSelected = !self.viewModel.isPlaying
-            self.timeLeftLabel.text = self.viewModel.trackDuration
         }
         self.cachedImage(url: self.viewModel.songImage) { [weak self] image in
             DispatchQueue.main.async {
                 self?.songImage.image = image
             }
         }
+        
     }
     
     //MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        PlaybackManager.shared.delegateVC = self
         setupConstraints()
+    }
+    
+    //MARK: - backButtonPressed
+    @objc func backButtonPressed(_ sender: UIButton) {
+        viewModel.backTrack()
+        updateView()
+    }
+    
+    //MARK: - nextButtonPressed
+    @objc func nextButtonPressed(_ sender: UIButton) {
+        viewModel.nextTrack()
+        updateView()
     }
     
     //MARK: - heartButtonAction
@@ -232,7 +246,6 @@ class PlayVC: UIViewController {
         viewModel.pause()
     }
 }
-
 
 //MARK: - UIScrollView Delegate
 extension PlayVC: UIScrollViewDelegate {

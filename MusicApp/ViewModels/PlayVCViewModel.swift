@@ -54,9 +54,6 @@ class PlayVCViewModel {
         return nil
     }
     
-    func resume(for track: TrackData) {
-    }
-    
     func pause() {
         if isPlaying {
             PlaybackManager.shared.pause()
@@ -65,6 +62,20 @@ class PlayVCViewModel {
         }
     }
     
-    func backTrack() {}
-    func forwardTrack() {}
+    func backTrack() {
+        guard let index = PlaybackManager.shared.currentTrackIndex else { return }
+        guard let currentPlayTime = PlaybackManager.shared.currentPlayTime else { return }
+        if currentPlayTime > 3 {
+            PlaybackManager.shared.toStartTrack()
+        } else if index != 0{
+            PlaybackManager.shared.currentTrackIndex = index-1
+        }
+    }
+    
+    func nextTrack() {
+        guard let index = PlaybackManager.shared.currentTrackIndex else { return }
+        guard let count = PlaybackManager.shared.trackList?.count, count-1 != index else { return }
+        print("count = \(count) index = \(index)")
+        PlaybackManager.shared.currentTrackIndex = index+1
+    }
 }

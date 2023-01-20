@@ -10,6 +10,8 @@ import UIKit
 class SearchTableViewCell: UITableViewCell {
     static let identifier = "SearchResultCell"
 
+    var id: Int?
+    
     let loadingSpinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView()
         spinner.style = .large
@@ -42,12 +44,21 @@ class SearchTableViewCell: UITableViewCell {
         return imageView
     }()
     
-    let rightArrowImage: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "RightArrow")
-        imageView.contentMode = .scaleAspectFit
-        imageView.layer.cornerRadius = 5
-        return imageView
+//    let rightArrowImage: UIImageView = {
+//        let imageView = UIImageView()
+//        imageView.image = UIImage(systemName: "play.display")
+//        imageView.contentMode = .scaleAspectFit
+//        imageView.layer.cornerRadius = 5
+//        return imageView
+//    }()
+    private lazy var rightArrowButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(UIImage(systemName: "play"), for: .normal)
+        button.setImage(UIImage(named: "pause.circle.fill"), for: .selected)
+        button.tintColor = .white
+        button.addTarget(target, action: #selector(rightArrowButton(_:)), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -60,17 +71,17 @@ class SearchTableViewCell: UITableViewCell {
         fatalError()
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
+    //MARK: - rightArrowButton
+    @objc func rightArrowButton(_ sender: UIButton) {
+        print(123)
+
+        sender.isSelected = !sender.isSelected
+        
     }
     
     //MARK: - Private UI setup methods
     private func setupCell() {
-        [albumImage, trackNameLabel, artistNameLabel, rightArrowImage, loadingSpinner].forEach {
+        [albumImage, trackNameLabel, artistNameLabel, rightArrowButton, loadingSpinner].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             contentView.addSubview($0)
         }
@@ -88,13 +99,13 @@ class SearchTableViewCell: UITableViewCell {
             
             trackNameLabel.leadingAnchor.constraint(equalTo: albumImage.trailingAnchor, constant: 29),
             trackNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 30),
-            trackNameLabel.trailingAnchor.constraint(equalTo: rightArrowImage.leadingAnchor, constant: -5),
+            trackNameLabel.trailingAnchor.constraint(equalTo: rightArrowButton.leadingAnchor, constant: -5),
             
             artistNameLabel.leadingAnchor.constraint(equalTo: albumImage.trailingAnchor, constant: 29),
             artistNameLabel.topAnchor.constraint(equalTo: trackNameLabel.bottomAnchor, constant: 10),
             
-            rightArrowImage.centerYAnchor.constraint(equalTo: centerYAnchor),
-            rightArrowImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -22)
+            rightArrowButton.centerYAnchor.constraint(equalTo: centerYAnchor),
+            rightArrowButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -22)
             
             
         ])
