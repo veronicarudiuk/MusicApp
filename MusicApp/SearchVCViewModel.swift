@@ -27,8 +27,8 @@ class SearchVCViewModel {
             previousCell.rightArrowImage.image = UIImage(named: "PlayIconInactive")
         }
         
-        guard previousIndex != index else { return }
-        
+        guard previousIndex != index else { previousIndex = nil; return }
+
         previousIndex = index
         PlaybackManager.shared.trackList = tracks?.tracks.items
         PlaybackManager.shared.playTrack(playIndex: index.row)
