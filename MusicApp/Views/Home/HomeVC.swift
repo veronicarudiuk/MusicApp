@@ -25,6 +25,13 @@ class HomeVC: UIViewController {
         setUpTopSection()
         setupPopularSongCollecrionView()
         setupRecentlyPlaySection()
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+    }
+    
+    //MARK: - viewWillAppear
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        recentlyPlayCollectionView.reloadData()
     }
     
     

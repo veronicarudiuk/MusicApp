@@ -11,7 +11,7 @@ final class RecentlyPlayedCell: UICollectionViewCell {
     
     static let reusedID = "RecentlyPlayedCell"
     
-    private lazy var songImageView: UIImageView = {
+    lazy var songImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "DefaultAlbumIMG")
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -21,7 +21,7 @@ final class RecentlyPlayedCell: UICollectionViewCell {
         return imageView
     }()
     
-    private lazy var playButton: UIButton = {
+    lazy var playButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(named: "PlayIconInactive"), for: .normal)
         button.setImage(UIImage(named: "PlayIconActive"), for: .selected)
@@ -30,7 +30,7 @@ final class RecentlyPlayedCell: UICollectionViewCell {
         return button
     }()
     
-    private lazy var songLabel: UILabel = {
+    lazy var songLabel: UILabel = {
         let label = UILabel()
         label.text = "Adiyee"
         label.textColor = .white
@@ -39,7 +39,7 @@ final class RecentlyPlayedCell: UICollectionViewCell {
         return label
     }()
     
-    private lazy var albumNameLabel: UILabel = {
+    lazy var albumNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Bachelor"
         label.textColor = .white
@@ -55,7 +55,7 @@ final class RecentlyPlayedCell: UICollectionViewCell {
         return image
     }()
     
-    private lazy var musicianNameLabel: UILabel = {
+    lazy var musicianNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Dhibu Ninan Thomas , Kapil Kapilan"
         label.textColor = .white
@@ -64,7 +64,7 @@ final class RecentlyPlayedCell: UICollectionViewCell {
         return label
     }()
     
-    private lazy var timeLabel: UILabel = {
+    lazy var timeLabel: UILabel = {
         let label = UILabel()
         label.text = "3:50"
 //        заменить на градиент
@@ -109,15 +109,15 @@ final class RecentlyPlayedCell: UICollectionViewCell {
             songLabel.trailingAnchor.constraint(equalTo: playButton.leadingAnchor, constant: -8),
             
             albumNameLabel.topAnchor.constraint(equalTo: songLabel.bottomAnchor, constant: 4),
-            albumNameLabel.leadingAnchor.constraint(equalTo: songLabel.leadingAnchor),
-            
+            albumNameLabel.leadingAnchor.constraint(equalTo: songImageView.trailingAnchor, constant: 12),
+            albumNameLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 100),
+
             circleDividerImage.leadingAnchor.constraint(equalTo: albumNameLabel.trailingAnchor, constant: 8),
-//            circleDividerImage.topAnchor.constraint(equalTo: songLabel.bottomAnchor, constant: 11.5),
             circleDividerImage.centerYAnchor.constraint(equalTo: albumNameLabel.centerYAnchor),
-            
+
             musicianNameLabel.leadingAnchor.constraint(equalTo: circleDividerImage.trailingAnchor, constant: 8),
             musicianNameLabel.topAnchor.constraint(equalTo: albumNameLabel.topAnchor),
-            musicianNameLabel.trailingAnchor.constraint(equalTo: playButton.leadingAnchor, constant: -8),
+            musicianNameLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 100),
             
             timeLabel.leadingAnchor.constraint(equalTo: songLabel.leadingAnchor),
             timeLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -14)
