@@ -29,9 +29,9 @@ class PlaybackManager {
     
     private func playFromTrackList() {
         guard let list = trackList else { return }
-        guard let currentTrack = list[currentTrackIndex] else { return }
+        currentTrack = list[currentTrackIndex ?? 0]
         
-        guard let currentTrack = currentTrack else { return }
+        guard let currentTrack = currentTrack else {return}
         print(currentTrack.name)
         addTrackToRecentlyPlayed(currentTrack)
     }
