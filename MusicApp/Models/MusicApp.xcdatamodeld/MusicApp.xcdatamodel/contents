@@ -8,6 +8,7 @@
         <attribute name="trackName" optional="YES" attributeType="String"/>
     </entity>
     <entity name="RecentlyPlayedTracks" representedClassName=".RecentlyPlayedTracks" syncable="YES" codeGenerationType="class">
+        <attribute name="addedTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="albumName" attributeType="String"/>
         <attribute name="artistName" attributeType="String"/>
         <attribute name="imageUrl" attributeType="String"/>

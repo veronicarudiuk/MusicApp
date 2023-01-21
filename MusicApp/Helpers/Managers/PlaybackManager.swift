@@ -33,7 +33,9 @@ class PlaybackManager {
         
         guard let currentTrack = currentTrack else {return}
         print(currentTrack.name)
-        addTrackToRecentlyPlayed(currentTrack)
+        if !alreadyInRecentlyPlayed(for: currentTrack.id) {
+            addTrackToRecentlyPlayed(currentTrack)
+        }
     }
     
     var delegateVC: UIViewController?
@@ -84,23 +86,46 @@ class PlaybackManager {
         currentTrack = set
         
     }
-  
 
 
-    
-//    сохраняем трек в контекст кор даты
-    func addTrackToRecentlyPlayed(_ trackData: TrackData) {
-        let newTrack = RecentlyPlayedTracks(context: self.context)
-        newTrack.trackId = trackData.id
-        newTrack.trackName = trackData.name
-        newTrack.albumName = trackData.album.name
-        newTrack.artistName = trackData.artists[0].name
-//        if let time = trackDuration {
-//            newTrack.duration = "0:\(String(describing: Int(time)))"
-//        }
-        newTrack.imageUrl = trackData.album.images[0].url
+  private func alreadyInRecentlyPlayed(for trackId: String) -> Bool {
+    let fetchRequest: NSFetchRequest<RecentlyPlayedTracks> = RecentlyPlayedTracks.fetchRequest()
+    fetchRequest.predicate = NSPredicate(format: "trackId == %@", trackId)
+
+    do {
+      let results = try context.fetch(fetchRequest)
+      if !results.isEmpty {
+        print("songId with value \(trackId) already exists in RecentlyPlayed")
+        let item = results.first
+        item?.setValue(Date(), forKey: "addedTime")
         saveItems()
+        return true
+      } else {
+        print("songId with value \(trackId) doesn't exists in RecentlyPlayed")
+        return false
+      }
+    } catch let error as NSError {
+      print("Could not fetch. \(error), \(error.userInfo)")
+      return false
     }
+  }
+
+  //    сохраняем трек в контекст кор даты
+  func addTrackToRecentlyPlayed(_ trackData: TrackData) {
+    let newTrack = RecentlyPlayedTracks(context: self.context)
+      newTrack.trackId = trackData.id
+      newTrack.trackName = trackData.name
+      newTrack.albumName = trackData.album?.name
+      newTrack.artistName = trackData.artists[0].name
+      newTrack.addedTime = Date()
+      //        if let time = trackDuration {
+      //            newTrack.duration = "0:\(String(describing: Int(time)))"
+      //        }
+      newTrack.imageUrl = trackData.album?.images[0].url
+      saveItems()
+  }
+
+
     
 //    сохраняем контекст кор даты
     func saveItems() {

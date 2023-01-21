@@ -8,7 +8,7 @@
 import Foundation
 
 struct TrackData: Decodable {
-    let album: AlbumData
+    let album: AlbumData?
     let artists: [ArtistData]
     let duration_ms: Int
     let explicit: Bool

@@ -13,4 +13,5 @@ struct AlbumData: Decodable {
     let images: [ImageData]
     let name: String
     let artists: [ArtistData]
+    let tracks: TrackSearchResponse?
 }
