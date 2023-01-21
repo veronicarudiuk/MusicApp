@@ -8,5 +8,5 @@
 import UIKit
 
 struct FavoriteHeaderViewViewModel {
-    let icon: UIImage?
+    var icon: UIImage?
 }
