@@ -90,12 +90,12 @@ class PlaybackManager {
         let newTrack = RecentlyPlayedTracks(context: self.context)
         newTrack.trackId = trackData.id
         newTrack.trackName = trackData.name
-        newTrack.albumName = trackData.album.name
+        newTrack.albumName = trackData.album?.name
         newTrack.artistName = trackData.artists[0].name
 //        if let time = trackDuration {
 //            newTrack.duration = "0:\(String(describing: Int(time)))"
 //        }
-        newTrack.imageUrl = trackData.album.images[0].url
+        newTrack.imageUrl = trackData.album?.images[0].url
         saveItems()
     }
     

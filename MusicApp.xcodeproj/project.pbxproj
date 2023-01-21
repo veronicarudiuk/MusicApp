@@ -24,6 +24,7 @@
 		01B8E93E29784D36004AFA77 /* PlaybackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B8E93D29784D36004AFA77 /* PlaybackManager.swift */; };
 		01B8E94129784EDB004AFA77 /* PlayVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B8E94029784EDB004AFA77 /* PlayVCViewModel.swift */; };
 		01B9E9F82973927E00413CC1 /* SearchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B9E9F72973927E00413CC1 /* SearchData.swift */; };
+		582ECF20297C0C7F00223EF0 /* NewReleasesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582ECF1F297C0C7F00223EF0 /* NewReleasesData.swift */; };
 		58362A11297AEE280011BB17 /* RecentlyPlayedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58362A10297AEE280011BB17 /* RecentlyPlayedViewModel.swift */; };
 		58362A14297AEEA00011BB17 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58362A13297AEEA00011BB17 /* Box.swift */; };
 		587298122977E535005FEE7E /* CAGradientLayer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587298112977E535005FEE7E /* CAGradientLayer+Extension.swift */; };
@@ -77,6 +78,7 @@
 		01B8E93D29784D36004AFA77 /* PlaybackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackManager.swift; sourceTree = "<group>"; };
 		01B8E94029784EDB004AFA77 /* PlayVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayVCViewModel.swift; sourceTree = "<group>"; };
 		01B9E9F72973927E00413CC1 /* SearchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchData.swift; sourceTree = "<group>"; };
+		582ECF1F297C0C7F00223EF0 /* NewReleasesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReleasesData.swift; sourceTree = "<group>"; };
 		58362A10297AEE280011BB17 /* RecentlyPlayedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyPlayedViewModel.swift; sourceTree = "<group>"; };
 		58362A13297AEEA00011BB17 /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 		587298112977E535005FEE7E /* CAGradientLayer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CAGradientLayer+Extension.swift"; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				01B9E9F72973927E00413CC1 /* SearchData.swift */,
 				019D2B7A2973E76700770F27 /* ArtistData.swift */,
 				019D2B7C2973E77E00770F27 /* AlbumData.swift */,
+				582ECF1F297C0C7F00223EF0 /* NewReleasesData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -441,6 +444,7 @@
 				5883E66A296C2736009BFA44 /* AppDelegate.swift in Sources */,
 				58F3DF1A297B218B0080992C /* FavoriteTableViewCell.swift in Sources */,
 				0136EE742970F38700388CA0 /* UserProfileData.swift in Sources */,
+				582ECF20297C0C7F00223EF0 /* NewReleasesData.swift in Sources */,
 				01B8E93C29783E17004AFA77 /* SearchVCViewModel.swift in Sources */,
 				58F3DF14297B21780080992C /* FavoriteTableViewCellViewModel.swift in Sources */,
 				019D2B7D2973E77E00770F27 /* AlbumData.swift in Sources */,
