@@ -14,7 +14,7 @@ class PlayVCViewModel {
     }
     
     var songImage: String {
-        return PlaybackManager.shared.currentTrack?.album.images[0].url ?? "https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg"
+        return PlaybackManager.shared.currentTrack?.album?.images[0].url ?? "https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg"
     }
     
     var artistName: String {
@@ -24,7 +24,7 @@ class PlayVCViewModel {
     }
     
     var albumName: String {
-        return PlaybackManager.shared.currentTrack?.album.name ?? "Album name"
+        return PlaybackManager.shared.currentTrack?.album?.name ?? "Album name"
     }
     
     var isPlaying: Bool {

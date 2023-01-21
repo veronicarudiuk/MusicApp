@@ -57,6 +57,49 @@ final class APIRequestManager {
         }
     }
     
+    // MARK: - Get album
+    public func getAlbum(id: String, completion: @escaping (Result<AlbumData, Error>) -> Void) {
+        createRequest(with: URL(string: K.API.baseAPIURL + "/albums/\(id)"), type: .GET) { baseRequest in
+            URLSession.shared.dataTask(with: baseRequest) { data, _, error in
+                guard let data = data, error == nil else {
+                    completion(.failure(APIError.failedToGetData))
+                    return
+                }
+        
+                do {
+                    let result = try JSONDecoder().decode(AlbumData.self, from: data)
+                    completion(.success(result))
+                } catch {
+                    print(error.localizedDescription)
+                    completion(.failure(error))
+                }
+                
+            }.resume()
+        }
+    }
+    
+    // MARK: - Get New Releases
+    public func getNewReleases(completion: @escaping (Result<NewReleasesData, Error>) -> Void) {
+        createRequest(with: URL(string: K.API.baseAPIURL + "/browse/new-releases?limit=10"), type: .GET) { baseRequest in
+            URLSession.shared.dataTask(with: baseRequest) { data, _, error in
+                guard let data = data, error == nil else {
+                    completion(.failure(APIError.failedToGetData))
+                    return
+                }
+                
+                do {
+                    let result = try JSONDecoder().decode(NewReleasesData.self, from: data)
+                    print(result)
+                    completion(.success(result))
+                } catch {
+                    print(" ОШИБОЧКА \(String(describing: error))")
+                    completion(.failure(error))
+                }
+                
+            }.resume()
+        }
+    }
+    
     // MARK: - User profile
     public func gerCurrentUserProfile(completion: @escaping (Result<UserProfileData, Error>) -> Void) {
         createRequest(with: URL(string: K.API.baseAPIURL + "/me"), type: .GET) { baseRequest in

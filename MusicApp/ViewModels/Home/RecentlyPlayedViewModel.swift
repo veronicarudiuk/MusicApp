@@ -29,6 +29,7 @@ struct RecentlyPlayedViewModel {
         let request: NSFetchRequest<RecentlyPlayedTracks> = RecentlyPlayedTracks.fetchRequest()
         do{
             recentlyPlayedTracks = try context.fetch(request)
+            recentlyPlayedTracks = recentlyPlayedTracks.reversed()
         } catch {
             print("Error fetching data from context \(error)")
         }

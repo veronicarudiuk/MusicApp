@@ -8,6 +8,8 @@
 import UIKit
 
 class HomeVC: UIViewController {
+    var newReleasesAlbums: NewReleasesData?
+    var albumData: AlbumData?
     
     private lazy var titleLabelTop = UILabel()
     private lazy var titleLabelBottom = UILabel()
@@ -26,12 +28,42 @@ class HomeVC: UIViewController {
         setupPopularSongCollecrionView()
         setupRecentlyPlaySection()
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+        fetchData()
+    }
+    
+    func fetchData() {
+        APIRequestManager.shared.getNewReleases{ result in
+            switch result {
+            case .success(let data):
+                self.newReleasesAlbums = data
+                getAlbum()
+                //                print(self.newReleasesAlbums?.albums.items[0].id)
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
+        func getAlbum() {
+            guard let newReleasesAlbums = newReleasesAlbums else { return }
+            let albumID = newReleasesAlbums.albums.items[0].id
+            APIRequestManager.shared.getAlbum(id: albumID) { result in
+                switch result {
+                case .success(let data):
+                    self.albumData = data
+                    print("Имя альбома: \(String(describing: self.albumData?.tracks?.items[0].name))")
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
     }
     
     //MARK: - viewWillAppear
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        recentlyPlayCollectionView.reloadData()
+        DispatchQueue.main.async {
+            self.recentlyPlayCollectionView.reloadData()
+        }
     }
     
     

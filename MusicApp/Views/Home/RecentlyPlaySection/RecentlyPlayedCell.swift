@@ -66,7 +66,7 @@ final class RecentlyPlayedCell: UICollectionViewCell {
     
     lazy var timeLabel: UILabel = {
         let label = UILabel()
-        label.text = "3:50"
+        label.text = "0:30"
 //        заменить на градиент
         label.textColor = UIColor(named: K.BrandColors.blueColor)
         label.font = UIFont(name: K.Fonts.interMedium, size: 12)
