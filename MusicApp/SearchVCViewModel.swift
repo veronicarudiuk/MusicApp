@@ -23,8 +23,9 @@ class SearchVCViewModel {
         PlaybackManager.shared.pause()
         
         if previousIndex != nil {
-            let previousCell = table.cellForRow(at: previousIndex!) as! SearchTableViewCell
-            previousCell.rightArrowImage.image = UIImage(named: "PlayIconInactive")
+            if let previousCell = table.cellForRow(at: previousIndex!) as? SearchTableViewCell {
+                previousCell.rightArrowImage.image = UIImage(named: "PlayIconInactive")
+            }
         }
         
         guard previousIndex != index else { previousIndex = nil; return }
