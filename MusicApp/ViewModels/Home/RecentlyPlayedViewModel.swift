@@ -11,8 +11,16 @@ import CoreData
 struct RecentlyPlayedViewModel {
     
     var recentlyPlayedTracks = [RecentlyPlayedTracks]()
+    private var previousIndex: IndexPath?
     
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    func playTrack(indexPath: IndexPath) {
+        guard let currentTrack = recentlyPlayedTracks[indexPath.row].preview_url else { return }
+        print(currentTrack)
+        guard let trackURL = URL(string: currentTrack) else { return }
+        PlaybackManager.shared.play(track: trackURL)
+    }
     
     func songInfo(indexPath: IndexPath, cellSong: inout UILabel, cellAlbum: inout UILabel, cellArtist: inout UILabel, cellTime: inout UILabel, imageURL: inout String) {
         let song = recentlyPlayedTracks[indexPath.row]

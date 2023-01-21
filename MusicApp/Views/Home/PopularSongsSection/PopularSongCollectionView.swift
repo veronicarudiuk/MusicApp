@@ -33,7 +33,7 @@ final class PopularSongsCollectionView: UICollectionView, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 20
+        return 30
     }
 }
 
@@ -45,10 +45,11 @@ extension PopularSongsCollectionView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = dequeueReusableCell(withReuseIdentifier: PopularSongCell.reusedID, for: indexPath) as! PopularSongCell
+
         let album = viewModel.albumData[indexPath.row]
         cell.albumNameLabel.text = album.name
         cell.songLabel.text = album.tracks?.items[0].name
-        
+        cell.playImage.image = viewModel.chooseButtonIcon(index: indexPath.row)
         let imageURL = album.images[0].url
         cachedImage(url: imageURL) { image in
             DispatchQueue.main.async {
@@ -71,5 +72,7 @@ extension PopularSongsCollectionView: UICollectionViewDelegateFlowLayout {
  extension PopularSongsCollectionView {
       func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
           print("PopularSongsCell did tap")
+          print(indexPath)
+          viewModel.playFromTrackList(index: indexPath, for: collectionView)
       }
   }

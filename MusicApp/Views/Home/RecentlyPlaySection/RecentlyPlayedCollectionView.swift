@@ -52,6 +52,8 @@ extension RecentlyPlayedCollectionView: UICollectionViewDataSource {
         
         viewModel.songInfo(indexPath: indexPath, cellSong: &cell.songLabel, cellAlbum: &cell.albumNameLabel, cellArtist: &cell.musicianNameLabel, cellTime: &cell.timeLabel, imageURL: &imageURL)
         
+        cell.playImage.image = UIImage(named: "PlayIconInactive")
+        
         cachedImage(url: imageURL) { image in
             DispatchQueue.main.async {
                 cell.songImageView.image = image
@@ -72,6 +74,13 @@ extension RecentlyPlayedCollectionView: UICollectionViewDelegateFlowLayout {
 //MARK: - ShowPecipeDataDelegate
  extension RecentlyPlayedCollectionView {
       func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+          viewModel.playTrack(indexPath: indexPath)
+          let cell = collectionView.cellForItem(at: indexPath) as! RecentlyPlayedCell
+          if  cell.playImage.image == UIImage(named: "StopActive") {
+              PlaybackManager.shared.pause()
+              cell.playImage.image = UIImage(named: "PlayIconInactive")
+          } else {
+              cell.playImage.image = UIImage(named: "StopActive")}
           print("RecentlyPlayedCell did tap")
       }
   }

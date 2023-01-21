@@ -5,6 +5,7 @@
         <attribute name="albumName" attributeType="String"/>
         <attribute name="artistName" attributeType="String"/>
         <attribute name="imageUrl" attributeType="String"/>
+        <attribute name="preview_url" optional="YES" attributeType="String"/>
         <attribute name="trackId" attributeType="String"/>
         <attribute name="trackName" attributeType="String"/>
     </entity>
