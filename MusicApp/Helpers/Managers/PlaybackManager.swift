@@ -99,10 +99,8 @@ class PlaybackManager {
     do {
       let results = try context.fetch(fetchRequest)
       if !results.isEmpty {
-        print("songId with value \(trackId) already exists in LikedSongs")
         return true
       } else {
-        print("songId with value \(trackId) doesn't exists in LikedSongs")
         return false
       }
     } catch let error as NSError {
@@ -122,7 +120,6 @@ class PlaybackManager {
       if !results.isEmpty {
         context.delete(results[0])
         saveItems()
-        print("songId with value \(currentTrack.id) has been deleted from liked songs")
       }
     } catch let error as NSError {
       print("Could not fetch. \(error), \(error.userInfo)")
@@ -151,13 +148,11 @@ class PlaybackManager {
     do {
       let results = try context.fetch(fetchRequest)
       if !results.isEmpty {
-        print("songId with value \(trackId) already exists in RecentlyPlayed")
         let item = results.first
         item?.setValue(Date(), forKey: "addedTime")
         saveItems()
         return true
       } else {
-        print("songId with value \(trackId) doesn't exists in RecentlyPlayed")
         return false
       }
     } catch let error as NSError {
