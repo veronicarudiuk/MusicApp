@@ -33,7 +33,9 @@ class PlaybackManager {
         
         guard let currentTrack = currentTrack else {return}
         print(currentTrack.name)
-        addTrackToRecentlyPlayed(currentTrack)
+        if !alreadyInRecentlyPlayed(for: currentTrack.id) {
+            addTrackToRecentlyPlayed(currentTrack)
+        }
     }
     
     var delegateVC: UIViewController?
@@ -111,18 +113,16 @@ class PlaybackManager {
   //    сохраняем трек в контекст кор даты
   func addTrackToRecentlyPlayed(_ trackData: TrackData) {
     let newTrack = RecentlyPlayedTracks(context: self.context)
-    if !alreadyInRecentlyPlayed(for: trackData.id) {
       newTrack.trackId = trackData.id
       newTrack.trackName = trackData.name
-      newTrack.albumName = trackData.album.name
+      newTrack.albumName = trackData.album?.name
       newTrack.artistName = trackData.artists[0].name
       newTrack.addedTime = Date()
       //        if let time = trackDuration {
       //            newTrack.duration = "0:\(String(describing: Int(time)))"
       //        }
-      newTrack.imageUrl = trackData.album.images[0].url
+      newTrack.imageUrl = trackData.album?.images[0].url
       saveItems()
-    }
   }
 
 
