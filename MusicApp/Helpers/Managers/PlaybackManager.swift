@@ -21,11 +21,7 @@ class PlaybackManager {
         }
     }
     
-    var trackList: [TrackData]? {
-        didSet {
-            playFromTrackList()
-        }
-    }
+    var trackList: [TrackData]? 
     
     private func playFromTrackList() {
         guard let list = trackList else { return }
