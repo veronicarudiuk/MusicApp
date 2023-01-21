@@ -84,20 +84,46 @@ class PlaybackManager {
         currentTrack = set
         
     }
-    
-//    сохраняем трек в контекст кор даты
-    func addTrackToRecentlyPlayed(_ trackData: TrackData) {
-        let newTrack = RecentlyPlayedTracks(context: self.context)
-        newTrack.trackId = trackData.id
-        newTrack.trackName = trackData.name
-        newTrack.albumName = trackData.album.name
-        newTrack.artistName = trackData.artists[0].name
-//        if let time = trackDuration {
-//            newTrack.duration = "0:\(String(describing: Int(time)))"
-//        }
-        newTrack.imageUrl = trackData.album.images[0].url
-        saveItems()
+
+
+  private func alreadyInRecentlyPlayed(for trackId: String) -> Bool {
+    let fetchRequest: NSFetchRequest<RecentlyPlayedTracks> = RecentlyPlayedTracks.fetchRequest()
+    fetchRequest.predicate = NSPredicate(format: "trackId == %@", trackId)
+
+    do {
+      let results = try context.fetch(fetchRequest)
+      if !results.isEmpty {
+        print("songId with value \(trackId) already exists in RecentlyPlayed")
+        return true
+      } else {
+        print("songId with value \(trackId) doesn't exists in RecentlyPlayed")
+        return false
+      }
+    } catch let error as NSError {
+      print("Could not fetch. \(error), \(error.userInfo)")
+      return false
     }
+  }
+
+//    сохраняем трек в контекст кор даты
+  func addTrackToRecentlyPlayed(_ trackData: TrackData) {
+    if alreadyInRecentlyPlayed(for: trackData.id) {
+      print("already in")
+    } else {
+    let newTrack = RecentlyPlayedTracks(context: self.context)
+    newTrack.trackId = trackData.id
+    newTrack.trackName = trackData.name
+    newTrack.albumName = trackData.album.name
+    newTrack.artistName = trackData.artists[0].name
+    //        if let time = trackDuration {
+    //            newTrack.duration = "0:\(String(describing: Int(time)))"
+    //        }
+    newTrack.imageUrl = trackData.album.images[0].url
+    saveItems()
+  }
+}
+
+
     
 //    сохраняем контекст кор даты
     func saveItems() {
