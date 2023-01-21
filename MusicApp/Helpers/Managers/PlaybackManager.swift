@@ -87,6 +87,37 @@ class PlaybackManager {
         
     }
 
+  private func alreadyInLikedSongs(for trackId: String) -> Bool {
+    let fetchRequest: NSFetchRequest<LikedSongs> = LikedSongs.fetchRequest()
+    fetchRequest.predicate = NSPredicate(format: "trackId == %@", trackId)
+
+    do {
+      let results = try context.fetch(fetchRequest)
+      if !results.isEmpty {
+        print("songId with value \(trackId) already exists in LikedSongs")
+        return true
+      } else {
+        print("songId with value \(trackId) doesn't exists in LikedSongs")
+        return false
+      }
+    } catch let error as NSError {
+      print("Could not fetch. \(error), \(error.userInfo)")
+      return false
+    }
+  }
+
+  func addTrackToLikedSongs(_ trackData: TrackData) {
+    if !alreadyInLikedSongs(for: trackData.id) {
+      let newTrack = LikedSongs(context: self.context)
+      newTrack.trackId = trackData.id
+      newTrack.trackName = trackData.name
+      newTrack.albumName = trackData.album?.name
+      newTrack.artistName = trackData.artists[0].name
+      newTrack.imageUrl = trackData.album?.images[0].url
+      saveItems()
+    }
+  }
+
 
   private func alreadyInRecentlyPlayed(for trackId: String) -> Bool {
     let fetchRequest: NSFetchRequest<RecentlyPlayedTracks> = RecentlyPlayedTracks.fetchRequest()
@@ -136,16 +167,6 @@ class PlaybackManager {
         }
     }
 
-  func addTrackToLikedSongs(_ trackData: TrackData) {
-    let newTrack = LikedSongs(context: self.context)
-    newTrack.trackId = trackData.id
-    newTrack.trackName = trackData.name
-    newTrack.albumName = trackData.album.name
-    newTrack.artistName = trackData.artists[0].name
-    newTrack.imageUrl = trackData.album.images[0].url
-    saveItems()
-
-  }
     
     func pause() {
         isPlaying = false
