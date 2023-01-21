@@ -84,7 +84,6 @@ class PlayVCViewModel {
     }
 
   func heartButtonPressed() {
-    guard let currentTrack = PlaybackManager.shared.currentTrack else { return }
     if isLikedTrack {
       PlaybackManager.shared.removeTrackFromLikedSongs()
     } else {
