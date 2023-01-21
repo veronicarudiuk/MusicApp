@@ -94,6 +94,9 @@ class PlaybackManager {
       let results = try context.fetch(fetchRequest)
       if !results.isEmpty {
         print("songId with value \(trackId) already exists in RecentlyPlayed")
+        let item = results.first
+        item?.setValue(Date(), forKey: "addedTime")
+        saveItems()
         return true
       } else {
         print("songId with value \(trackId) doesn't exists in RecentlyPlayed")
@@ -105,23 +108,22 @@ class PlaybackManager {
     }
   }
 
-//    сохраняем трек в контекст кор даты
+  //    сохраняем трек в контекст кор даты
   func addTrackToRecentlyPlayed(_ trackData: TrackData) {
-    if alreadyInRecentlyPlayed(for: trackData.id) {
-      print("already in")
-    } else {
     let newTrack = RecentlyPlayedTracks(context: self.context)
-    newTrack.trackId = trackData.id
-    newTrack.trackName = trackData.name
-    newTrack.albumName = trackData.album.name
-    newTrack.artistName = trackData.artists[0].name
-    //        if let time = trackDuration {
-    //            newTrack.duration = "0:\(String(describing: Int(time)))"
-    //        }
-    newTrack.imageUrl = trackData.album.images[0].url
-    saveItems()
+    if !alreadyInRecentlyPlayed(for: trackData.id) {
+      newTrack.trackId = trackData.id
+      newTrack.trackName = trackData.name
+      newTrack.albumName = trackData.album.name
+      newTrack.artistName = trackData.artists[0].name
+      newTrack.addedTime = Date()
+      //        if let time = trackDuration {
+      //            newTrack.duration = "0:\(String(describing: Int(time)))"
+      //        }
+      newTrack.imageUrl = trackData.album.images[0].url
+      saveItems()
+    }
   }
-}
 
 
     
