@@ -40,6 +40,16 @@ class FavoriteVC: UIViewController {
 private extension FavoriteVC {
   func setup() {
     view.backgroundColor = UIColor(named: K.BrandColors.darkBG)
+    //без этого при скролле меняются цвета таб бара и нав. бара
+//    let appearanceTabBar = UITabBarAppearance()
+//    appearanceTabBar.configureWithOpaqueBackground()
+//    appearanceTabBar.backgroundColor = UIColor(named: K.BrandColors.tabBarBG)
+//    self.tabBarController?.tabBar.standardAppearance = appearanceTabBar;
+//    let appearanceNavBar = UINavigationBarAppearance()
+//    appearanceNavBar.configureWithOpaqueBackground()
+//    appearanceNavBar.backgroundColor = UIColor(named: K.BrandColors.darkBG)
+//    navigationController?.navigationBar.standardAppearance = appearanceNavBar
+//    navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
 
     view.addSubview(tableView)
     NSLayoutConstraint.activate([

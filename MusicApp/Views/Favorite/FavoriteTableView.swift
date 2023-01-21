@@ -54,6 +54,7 @@ extension FavoriteTableView: UITableViewDataSource {
       return UITableViewCell()
     }
     cell.viewModel = cellViewModel
+    cell.selectionStyle = .none
     return cell
   }
 }
