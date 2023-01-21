@@ -9,20 +9,22 @@ import UIKit
 
 final class PopularSongsCollectionView: UICollectionView, UICollectionViewDelegate {
     
+    var viewModel = PopularSongsViewModel()
+    
     init() {
-        
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         super.init(frame: .zero, collectionViewLayout: layout)
         
-        delegate = self
-        dataSource = self
+//        self.viewModel.fetchData()
+//        DispatchQueue.main.async {
+            self.delegate = self
+            self.dataSource = self
+//        }
+        
         backgroundColor = .clear
         showsHorizontalScrollIndicator = false
-
-        
         register(PopularSongCell.self, forCellWithReuseIdentifier: PopularSongCell.reusedID)
-        
         translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -38,12 +40,21 @@ final class PopularSongsCollectionView: UICollectionView, UICollectionViewDelega
 //MARK: - UICollectionViewDataSource
 extension PopularSongsCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return viewModel.albumData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = dequeueReusableCell(withReuseIdentifier: PopularSongCell.reusedID, for: indexPath) as! PopularSongCell
-
+        let album = viewModel.albumData[indexPath.row]
+        cell.albumNameLabel.text = album.name
+        cell.songLabel.text = album.tracks?.items[0].name
+        
+        let imageURL = album.images[0].url
+        cachedImage(url: imageURL) { image in
+            DispatchQueue.main.async {
+                cell.songImageView.image = image
+            }
+        }
         return cell
     }
 }

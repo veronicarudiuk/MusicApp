@@ -118,9 +118,6 @@ class PlaybackManager {
       newTrack.albumName = trackData.album?.name
       newTrack.artistName = trackData.artists[0].name
       newTrack.addedTime = Date()
-      //        if let time = trackDuration {
-      //            newTrack.duration = "0:\(String(describing: Int(time)))"
-      //        }
       newTrack.imageUrl = trackData.album?.images[0].url
       saveItems()
   }
@@ -156,5 +153,5 @@ class PlaybackManager {
         isPlaying = true
     }
     
-    
+
 }

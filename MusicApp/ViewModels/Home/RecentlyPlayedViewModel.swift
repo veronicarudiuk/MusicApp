@@ -19,7 +19,6 @@ struct RecentlyPlayedViewModel {
         cellSong.text = song.trackName
         cellAlbum.text = song.albumName
         cellArtist.text = song.artistName
-//        cellTime.text = song.duration
         
         guard let songImage = song.imageUrl else { return }
         imageURL = songImage
@@ -30,8 +29,22 @@ struct RecentlyPlayedViewModel {
         do{
             recentlyPlayedTracks = try context.fetch(request)
             recentlyPlayedTracks = recentlyPlayedTracks.reversed()
+//            раскомментировать когда нужно удалить записи в кор дате
+//            deleteAllFromCoreData()
         } catch {
             print("Error fetching data from context \(error)")
+        }
+    }
+    
+    func deleteAllFromCoreData() {
+        for i in recentlyPlayedTracks{
+            context.delete(i)
+            print("delete \(i)")
+        }
+        do {
+            try context.save()
+        } catch {
+            print("Error saving context \(error)")
         }
     }
 }

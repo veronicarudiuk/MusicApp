@@ -89,10 +89,9 @@ final class APIRequestManager {
                 
                 do {
                     let result = try JSONDecoder().decode(NewReleasesData.self, from: data)
-                    print(result)
                     completion(.success(result))
                 } catch {
-                    print(" ОШИБОЧКА \(String(describing: error))")
+                    print(error.localizedDescription)
                     completion(.failure(error))
                 }
                 

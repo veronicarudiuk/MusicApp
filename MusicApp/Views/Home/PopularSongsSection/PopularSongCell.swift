@@ -11,7 +11,7 @@ final class PopularSongCell: UICollectionViewCell {
     
     static let reusedID = "PopularSongCell"
     
-    private lazy var songImageView: UIImageView = {
+    lazy var songImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "DefaultAlbumIMG")
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -29,7 +29,7 @@ final class PopularSongCell: UICollectionViewCell {
         return imageView
     }()
     
-    private lazy var playButton: UIButton = {
+    lazy var playButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(named: "PlayIconInactive"), for: .normal)
         button.setImage(UIImage(named: "PlayIconActive"), for: .selected)
@@ -38,7 +38,7 @@ final class PopularSongCell: UICollectionViewCell {
         return button
     }()
     
-    private lazy var songLabel: UILabel = {
+    lazy var songLabel: UILabel = {
         let label = UILabel()
         label.text = "Adiyee"
         label.textColor = .white
@@ -47,7 +47,7 @@ final class PopularSongCell: UICollectionViewCell {
         return label
     }()
     
-    private lazy var albumNameLabel: UILabel = {
+    lazy var albumNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Bachelor"
         label.textColor = .white

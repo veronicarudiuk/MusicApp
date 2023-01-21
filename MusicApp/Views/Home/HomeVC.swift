@@ -8,8 +8,6 @@
 import UIKit
 
 class HomeVC: UIViewController {
-    var newReleasesAlbums: NewReleasesData?
-    var albumData: AlbumData?
     
     private lazy var titleLabelTop = UILabel()
     private lazy var titleLabelBottom = UILabel()
@@ -20,42 +18,20 @@ class HomeVC: UIViewController {
     private lazy var recentlyPlaySectionTitle = UILabel()
     private lazy var recentlyPlayCollectionView = RecentlyPlayedCollectionView()
     
+    private lazy var loadingView = UIView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = true
         view.backgroundColor = UIColor(named: K.BrandColors.darkBG)
         setUpTopSection()
+        
+        popularSongsCollectionView.viewModel.fetchData()
+        DispatchQueue.main.async {
+            self.loadingView.isHidden = true
+        }
         setupPopularSongCollecrionView()
         setupRecentlyPlaySection()
-        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
-        fetchData()
-    }
-    
-    func fetchData() {
-        APIRequestManager.shared.getNewReleases{ result in
-            switch result {
-            case .success(let data):
-                self.newReleasesAlbums = data
-                getAlbum()
-                //                print(self.newReleasesAlbums?.albums.items[0].id)
-            case .failure(let error):
-                print(error)
-            }
-        }
-        
-        func getAlbum() {
-            guard let newReleasesAlbums = newReleasesAlbums else { return }
-            let albumID = newReleasesAlbums.albums.items[0].id
-            APIRequestManager.shared.getAlbum(id: albumID) { result in
-                switch result {
-                case .success(let data):
-                    self.albumData = data
-                    print("Имя альбома: \(String(describing: self.albumData?.tracks?.items[0].name))")
-                case .failure(let error):
-                    print(error)
-                }
-            }
-        }
     }
     
     //MARK: - viewWillAppear
@@ -66,16 +42,16 @@ class HomeVC: UIViewController {
         }
     }
     
-    
     // MARK: - Setup UI
+    
     private func setUpTopSection() {
-        
+        titleLabelTop.text = "Hello"
         APIRequestManager.shared.gerCurrentUserProfile { result in
             switch result {
             case .success(let model):
                 let name = model.display_name
                 DispatchQueue.main.async {
-                    self.titleLabelTop.text = "Hello \(name),"
+                    self.titleLabelTop.text = "Hello \(name)!"
                 }
                 break
             case .failure(let error):
@@ -108,10 +84,23 @@ class HomeVC: UIViewController {
         popularSongSectionTitle.textColor = .white
         popularSongSectionTitle.font = UIFont(name: K.Fonts.interSemiBold, size: 16)
         
+//        пока данные не подгрузятся будет видна загрузочная вью
+        loadingView.backgroundColor = UIColor(named: K.BrandColors.darkBG)
+        let downloadIndicator = UIActivityIndicatorView()
+        downloadIndicator.style = UIActivityIndicatorView.Style.large
+        downloadIndicator.color = UIColor(named: K.BrandColors.blueColor)
+        downloadIndicator.startAnimating()
+        
         view.addSubview(popularSongSectionTitle)
         view.addSubview(popularSongsCollectionView)
+        view.addSubview(loadingView)
+        loadingView.addSubview(downloadIndicator)
+        
         popularSongSectionTitle.translatesAutoresizingMaskIntoConstraints = false
         popularSongsCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        downloadIndicator.translatesAutoresizingMaskIntoConstraints = false
+        loadingView.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
             popularSongSectionTitle.topAnchor.constraint(equalTo: titleLabelBottom.bottomAnchor, constant: 32),
             popularSongSectionTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 21),
@@ -119,7 +108,15 @@ class HomeVC: UIViewController {
             popularSongsCollectionView.topAnchor.constraint(equalTo: popularSongSectionTitle.bottomAnchor, constant: 10),
             popularSongsCollectionView.leadingAnchor.constraint(equalTo: popularSongSectionTitle.leadingAnchor),
             popularSongsCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            popularSongsCollectionView.heightAnchor.constraint(equalToConstant: 160)
+            popularSongsCollectionView.heightAnchor.constraint(equalToConstant: 160),
+            
+            loadingView.topAnchor.constraint(equalTo: popularSongsCollectionView.topAnchor),
+            loadingView.bottomAnchor.constraint(equalTo: popularSongsCollectionView.bottomAnchor),
+            loadingView.leadingAnchor.constraint(equalTo: popularSongsCollectionView.leadingAnchor),
+            loadingView.trailingAnchor.constraint(equalTo: popularSongsCollectionView.trailingAnchor),
+
+            downloadIndicator.centerYAnchor.constraint(equalTo: loadingView.centerYAnchor),
+            downloadIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
     }
     

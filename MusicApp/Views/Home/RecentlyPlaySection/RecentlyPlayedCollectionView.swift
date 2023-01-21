@@ -10,7 +10,6 @@ import UIKit
 final class RecentlyPlayedCollectionView: UICollectionView, UICollectionViewDelegate {
     
     private var viewModel = RecentlyPlayedViewModel()
-//    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     init() {
         
@@ -26,20 +25,9 @@ final class RecentlyPlayedCollectionView: UICollectionView, UICollectionViewDele
         register(RecentlyPlayedCell.self, forCellWithReuseIdentifier: RecentlyPlayedCell.reusedID)
         
         translatesAutoresizingMaskIntoConstraints = false
-//
-//        for i in viewModel.recentlyPlayedTracks{
-//                   context.delete(i)
-//               }
-//               saveItems()
     }
     
-//    func saveItems() {
-//        do {
-//           try context.save()
-//        } catch {
-//           print("Error saving context \(error)")
-//        }
-//    }
+  
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
