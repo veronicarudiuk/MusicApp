@@ -70,6 +70,11 @@ class PlaybackManager {
         guard let time = player?.currentItem?.duration.seconds else { return nil}
         return time
     }
+
+    var isLiked: Bool {
+    guard let currentTrack = currentTrack else {return false}
+    return alreadyInLikedSongs(for: currentTrack.id)
+    }
     
     //перейти в начало трека
     func toStartTrack() {
@@ -106,14 +111,34 @@ class PlaybackManager {
     }
   }
 
-  func addTrackToLikedSongs(_ trackData: TrackData) {
-    if !alreadyInLikedSongs(for: trackData.id) {
+
+  func removeTrackFromLikedSongs() {
+    let fetchRequest: NSFetchRequest<LikedSongs> = LikedSongs.fetchRequest()
+    guard let currentTrack = currentTrack else {return}
+    fetchRequest.predicate = NSPredicate(format: "trackId == %@", currentTrack.id)
+
+    do {
+      let results = try context.fetch(fetchRequest)
+      if !results.isEmpty {
+        context.delete(results[0])
+        saveItems()
+        print("songId with value \(currentTrack.id) has been deleted from liked songs")
+      }
+    } catch let error as NSError {
+      print("Could not fetch. \(error), \(error.userInfo)")
+    }
+  }
+
+
+  func addTrackToLikedSongs() {
+    guard let currentTrack = currentTrack else {return}
+    if !alreadyInLikedSongs(for: currentTrack.id) {
       let newTrack = LikedSongs(context: self.context)
-      newTrack.trackId = trackData.id
-      newTrack.trackName = trackData.name
-      newTrack.albumName = trackData.album?.name
-      newTrack.artistName = trackData.artists[0].name
-      newTrack.imageUrl = trackData.album?.images[0].url
+      newTrack.trackId = currentTrack.id
+      newTrack.trackName = currentTrack.name
+      newTrack.albumName = currentTrack.album?.name
+      newTrack.artistName = currentTrack.artists[0].name
+      newTrack.imageUrl = currentTrack.album?.images[0].url
       saveItems()
     }
   }

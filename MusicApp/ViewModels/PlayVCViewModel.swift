@@ -30,6 +30,10 @@ class PlayVCViewModel {
     var isPlaying: Bool {
         return PlaybackManager.shared.isPlaying
     }
+
+    var isLikedTrack: Bool {
+        PlaybackManager.shared.isLiked
+    }
     
     var progress: Double {
         return PlaybackManager.shared.progress ?? 0
@@ -81,6 +85,10 @@ class PlayVCViewModel {
 
   func heartButtonPressed() {
     guard let currentTrack = PlaybackManager.shared.currentTrack else { return }
-    PlaybackManager.shared.addTrackToLikedSongs(currentTrack)
+    if isLikedTrack {
+      PlaybackManager.shared.removeTrackFromLikedSongs()
+    } else {
+      PlaybackManager.shared.addTrackToLikedSongs()
+    }
   }
 }
