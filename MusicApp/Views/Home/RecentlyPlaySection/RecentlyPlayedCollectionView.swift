@@ -22,9 +22,7 @@ final class RecentlyPlayedCollectionView: UICollectionView, UICollectionViewDele
         dataSource = self
         backgroundColor = .clear
         showsVerticalScrollIndicator = false
-        
-        viewModel.loadTracks()
-        
+
         register(RecentlyPlayedCell.self, forCellWithReuseIdentifier: RecentlyPlayedCell.reusedID)
         
         translatesAutoresizingMaskIntoConstraints = false
@@ -55,6 +53,7 @@ final class RecentlyPlayedCollectionView: UICollectionView, UICollectionViewDele
 //MARK: - UICollectionViewDataSource
 extension RecentlyPlayedCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        viewModel.loadTracks()
         return viewModel.recentlyPlayedTracks.count
     }
     

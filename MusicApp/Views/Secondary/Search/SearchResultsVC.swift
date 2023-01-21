@@ -47,7 +47,8 @@ class SearchResultsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         // выбор иконки
         cell.rightArrowImage.image = viewModel?.chooseButtonIcon(index: indexPath.row)
-        guard let dishImage = viewModel?.tracks?.tracks.items[indexPath.row].album.images[0].url else { return cell }
+        guard let album = viewModel?.tracks?.tracks.items[indexPath.row].album else { return cell }
+        let dishImage = album.images[0].url
         cell.loadingSpinner.startAnimating()
         cell.albumImage.image = .none
         cachedImage(url: dishImage) { image in
