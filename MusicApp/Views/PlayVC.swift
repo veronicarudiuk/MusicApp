@@ -235,10 +235,12 @@ class PlayVC: UIViewController {
         updateView()
     }
     
-    //MARK: - heartButtonAction
-    @objc func heartButtonPressed(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
-    }
+  //MARK: - heartButtonAction
+  @objc func heartButtonPressed(_ sender: UIButton) {
+    sender.isSelected = !sender.isSelected
+    viewModel.heartButtonPressed()
+
+  }
     
     //MARK: - playButtonAction
     @objc func playButtonPressed(_ sender: UIButton) {

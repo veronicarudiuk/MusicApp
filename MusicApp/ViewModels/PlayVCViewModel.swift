@@ -78,4 +78,9 @@ class PlayVCViewModel {
         print("count = \(count) index = \(index)")
         PlaybackManager.shared.currentTrackIndex = index+1
     }
+
+  func heartButtonPressed() {
+    guard let currentTrack = PlaybackManager.shared.currentTrack else { return }
+    PlaybackManager.shared.addTrackToLikedSongs(currentTrack)
+  }
 }

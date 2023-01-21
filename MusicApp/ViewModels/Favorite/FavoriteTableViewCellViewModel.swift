@@ -8,9 +8,10 @@
 import UIKit
 
 struct FavoriteTableViewCellViewModel {
-    let artist: String
-    let track: String
-    let iconPlayPassive = UIImage(named: "PlayIconInactive")
-    let iconPlayActive = UIImage(named: "PlayIconActive")
-    var isPlayed = false
+  let artist: String
+  let track: String
+  var currentIcon: UIImage {
+    isPlaying ? UIImage(named: "StopIcon")! : UIImage(named: "PlayIconActive")!
+  }
+  var isPlaying = false
 }

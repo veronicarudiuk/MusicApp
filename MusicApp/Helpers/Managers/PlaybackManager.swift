@@ -84,6 +84,19 @@ class PlaybackManager {
         currentTrack = set
         
     }
+  
+
+  func addTrackToLikedSongs(_ trackData: TrackData) {
+    let newTrack = LikedSongs(context: self.context)
+    newTrack.trackId = trackData.id
+    newTrack.trackName = trackData.name
+    newTrack.albumName = trackData.album.name
+    newTrack.artistName = trackData.artists[0].name
+    newTrack.imageUrl = trackData.album.images[0].url
+    saveItems()
+
+  }
+
     
 //    сохраняем трек в контекст кор даты
     func addTrackToRecentlyPlayed(_ trackData: TrackData) {
