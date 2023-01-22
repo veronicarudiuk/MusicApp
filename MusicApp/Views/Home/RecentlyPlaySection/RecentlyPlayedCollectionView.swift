@@ -21,18 +21,16 @@ final class RecentlyPlayedCollectionView: UICollectionView, UICollectionViewDele
         showsVerticalScrollIndicator = false
         register(RecentlyPlayedCell.self, forCellWithReuseIdentifier: RecentlyPlayedCell.reusedID)
         translatesAutoresizingMaskIntoConstraints = false
+        self.viewModel.loadTracks()
+        bindViewModel() 
         print("reloadTable")
-        updateTable()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func updateTable() {
-        self.viewModel.loadTracks()
-//        print("mdjdj")
-//        print(viewModel.shortLastTracks[0].trackName)
+    func bindViewModel() {
         viewModel.allTracks.bind { _ in
             DispatchQueue.main.async {
                 self.reloadData()

@@ -122,10 +122,6 @@ final class RecentlyPlayedCell: UICollectionViewCell {
         ])
     }
     
-    @objc func playButtonPressed(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
-    }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
