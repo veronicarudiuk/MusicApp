@@ -17,22 +17,25 @@ final class PopularSongsCollectionView: UICollectionView, UICollectionViewDelega
         super.init(frame: .zero, collectionViewLayout: layout)
         self.delegate = self
         self.dataSource = self
-        
-        self.viewModel.fetchData()
-        viewModel.albumData.bind { _ in
-                   DispatchQueue.main.async {
-                       self.reloadData()
-                   }
-               }
-        
         backgroundColor = .clear
         showsHorizontalScrollIndicator = false
         register(PopularSongCell.self, forCellWithReuseIdentifier: PopularSongCell.reusedID)
         translatesAutoresizingMaskIntoConstraints = false
+        
+        updateTable()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func updateTable() {
+        self.viewModel.fetchData()
+        viewModel.albumData.bind { _ in
+            DispatchQueue.main.async {
+                self.reloadData()
+            }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -48,7 +51,7 @@ extension PopularSongsCollectionView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = dequeueReusableCell(withReuseIdentifier: PopularSongCell.reusedID, for: indexPath) as! PopularSongCell
-
+        
         let album = viewModel.albumData.value[indexPath.row]
         cell.albumNameLabel.text = album.name
         cell.songLabel.text = album.tracks?.items[0].name
@@ -72,10 +75,10 @@ extension PopularSongsCollectionView: UICollectionViewDelegateFlowLayout {
 }
 
 //MARK: - ShowPecipeDataDelegate
- extension PopularSongsCollectionView {
-      func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-          print("PopularSongsCell did tap")
-          print(indexPath)
-          viewModel.playFromTrackList(index: indexPath, for: collectionView)
-      }
-  }
+extension PopularSongsCollectionView {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("PopularSongsCell did tap")
+        print(indexPath)
+        viewModel.playFromTrackList(index: indexPath, for: collectionView)
+    }
+}

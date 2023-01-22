@@ -18,15 +18,35 @@ class PopularSongsViewModel {
 
     
     func playFromTrackList(index: IndexPath, for collection: UICollectionView) {
+        let cell = collection.cellForItem(at: index) as! PopularSongCell
         PlaybackManager.shared.pause()
-
-        if previousIndex != index {
-            previousIndex = index
-            PlaybackManager.shared.trackList = allTracks
-            PlaybackManager.shared.playTrack(playIndex: index.row)
+        
+        if previousIndex != nil {
+            if let previousCell = collection.cellForItem(at: previousIndex!) as? PopularSongCell {
+                previousCell.playImage.image = UIImage(named: "PlayIconInactive")
+            }
         }
-       
-        collection.reloadData()
+        
+        guard previousIndex != index else { previousIndex = nil; return }
+
+        previousIndex = index
+        PlaybackManager.shared.trackList = allTracks
+        PlaybackManager.shared.playTrack(playIndex: index.row)
+        cell.playImage.image = UIImage(named: "StopActive")
+        
+//        проверяю есть ли айдишка трека
+        guard let currentTrack = allTracks[index.row].preview_url else { return }
+        print(currentTrack)
+        
+//        PlaybackManager.shared.pause()
+//
+//        if previousIndex != index {
+//            previousIndex = index
+//            PlaybackManager.shared.trackList = allTracks
+//            PlaybackManager.shared.playTrack(playIndex: index.row)
+//        }
+//
+//        collection.reloadData()
     }
 
     func chooseButtonIcon(index: Int) -> UIImage {
@@ -62,6 +82,7 @@ class PopularSongsViewModel {
         APIRequestManager.shared.getAlbum(id: album.id) { result in
             switch result {
             case .success(let data):
+                guard (data.tracks?.items[0].preview_url) != nil else { return }
                 self.albumData.value.append(data)
                 var track = data.tracks?.items[0]
                 track?.album = album

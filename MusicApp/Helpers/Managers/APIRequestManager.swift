@@ -80,7 +80,7 @@ final class APIRequestManager {
     
     // MARK: - Get New Releases
     public func getNewReleases(completion: @escaping (Result<NewReleasesData, Error>) -> Void) {
-        createRequest(with: URL(string: K.API.baseAPIURL + "/browse/new-releases?limit=2"), type: .GET) { baseRequest in
+        createRequest(with: URL(string: K.API.baseAPIURL + "/browse/new-releases?limit=30"), type: .GET) { baseRequest in
             URLSession.shared.dataTask(with: baseRequest) { data, _, error in
                 guard let data = data, error == nil else {
                     completion(.failure(APIError.failedToGetData))
