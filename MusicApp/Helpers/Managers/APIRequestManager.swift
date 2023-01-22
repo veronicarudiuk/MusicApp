@@ -12,7 +12,7 @@ final class APIRequestManager {
     
     private init () {}
     
-    public func getTrack(id: String, completion: @escaping (Result<UserProfileData, Error>) -> Void) {
+    public func getTrack(id: String, completion: @escaping (Result<TrackData, Error>) -> Void) {
         createRequest(with: URL(string: K.API.baseAPIURL + "/tracks/\(id)"), type: .GET) { baseRequest in
             URLSession.shared.dataTask(with: baseRequest) { data, _, error in
                 guard let data = data, error == nil else {
@@ -21,9 +21,10 @@ final class APIRequestManager {
                 }
                 
                 do {
-                    let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                    print(result)
-                    //completion(.success(result))
+                    //let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                  let result = try JSONDecoder().decode(TrackData.self, from: data)
+                  print(result)
+                  completion(.success(result))
                 } catch {
                     print(error.localizedDescription)
                     completion(.failure(error))
