@@ -96,14 +96,11 @@ private extension FavoriteTableViewCell {
 
   @objc func playButtonTapped(_ sender: UIButton!) {
     guard let trackID = trackID else { return }
-
     if (PlaybackManager.shared.isPlaying == true) && (PlaybackManager.shared.currentTrack?.id == trackID) {
       playButton.setImage(viewModel?.playIcon, for: .normal)
       PlaybackManager.shared.pause()
       return
     }
-
-    playButton.setImage(viewModel?.stopIcon, for: .normal)
     APIRequestManager.shared.getTrack(id: trackID) { result in
         switch result {
         case .success(let model):
@@ -113,8 +110,9 @@ private extension FavoriteTableViewCell {
             print(error.localizedDescription)
         }
     }
-
-    print("PRESSED")
-
+    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+      NotificationCenter.default.post(name: NSNotification.Name("reloadtable"), object: nil)
+      NotificationCenter.default.post(name: NSNotification.Name("loadData"), object: nil)
+    }
   }
 }

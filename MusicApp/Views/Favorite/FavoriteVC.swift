@@ -32,9 +32,10 @@ class FavoriteVC: UIViewController {
   }()
   
 
-
   override func viewDidLoad() {
     super.viewDidLoad()
+    NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: NSNotification.Name("loadData"), object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(reloadtable), name: NSNotification.Name("reloadtable"), object: nil)
     loadProfilePic()
     setup()
 
@@ -42,6 +43,31 @@ class FavoriteVC: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated) // No need for semicolon
     loadData()
+    tableView.reloadData()
+  }
+  @objc func loadData() {
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let request: NSFetchRequest<LikedSongs> = LikedSongs.fetchRequest()
+    var data: [LikedSongs] = []
+    do {
+      data = try context.fetch(request)
+    } catch {
+      print("Error fetching data from Core Data")
+    }
+
+    startLabel.isHidden = !data.isEmpty
+    var sections: [[FavoriteTableViewCellViewModel]] = []
+    for item in data {
+      guard let artist = item.artistName, let track = item.trackName, let trackID = item.trackId else { return }
+      let playing_now = (PlaybackManager.shared.isPlaying == true) && (PlaybackManager.shared.currentTrack?.name == item.trackName)
+      sections.append([FavoriteTableViewCellViewModel(artist: artist, track: track, trackID: trackID, isPlaying: playing_now)])
+    }
+    let viewModel = FavoriteTableViewViewModel(sections: sections, header: FavoriteHeaderViewViewModel(icon: self.headerView.viewModel?.icon ))
+    tableView.viewModel = viewModel
+    headerView.viewModel = viewModel.header
+  }
+
+  @objc func reloadtable() {
     tableView.reloadData()
   }
 
@@ -102,27 +128,6 @@ private extension FavoriteVC {
     }
   }
 
-  func loadData() {
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    let request: NSFetchRequest<LikedSongs> = LikedSongs.fetchRequest()
-    var data: [LikedSongs] = []
-    do {
-      data = try context.fetch(request)
-    } catch {
-      print("Error fetching data from Core Data")
-    }
-
-    startLabel.isHidden = !data.isEmpty
-    var sections: [[FavoriteTableViewCellViewModel]] = []
-    for item in data {
-      guard let artist = item.artistName, let track = item.trackName, let trackID = item.trackId else { return }
-      let playing_now = (PlaybackManager.shared.isPlaying == true) && (PlaybackManager.shared.currentTrack?.name == item.trackName)
-      sections.append([FavoriteTableViewCellViewModel(artist: artist, track: track, trackID: trackID, isPlaying: playing_now)])
-    }
-    let viewModel = FavoriteTableViewViewModel(sections: sections, header: FavoriteHeaderViewViewModel(icon: self.headerView.viewModel?.icon ))
-    tableView.viewModel = viewModel
-    headerView.viewModel = viewModel.header
-  }
 }
 
 
