@@ -11,8 +11,8 @@ struct FavoriteTableViewCellViewModel {
   let artist: String
   let track: String
   let trackID: String
-  let stopIcon = UIImage(named: "StopIcon")
-  let playIcon = UIImage(named: "PlayIconActive")
+  let stopIcon = UIImage(named: "StopActive")
+  let playIcon = UIImage(named: "PlayIconInactive")
   var currentIcon: UIImage {
     isPlaying ? stopIcon! : playIcon!
   }

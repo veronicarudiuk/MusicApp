@@ -12,6 +12,7 @@ class FavoriteHeaderView: UIStackView {
     var viewModel: FavoriteHeaderViewViewModel? {
         didSet {
             profileImage.image = viewModel?.icon
+            profileImage.layer.cornerRadius = profileImage.frame.width / 2
         }
     }
     
@@ -31,6 +32,9 @@ class FavoriteHeaderView: UIStackView {
     private lazy var profileImage: UIImageView = {
         let profileImage = UIImageView()
         profileImage.contentMode = .scaleAspectFit
+        profileImage.clipsToBounds = true
+        profileImage.layer.borderColor = UIColor(red: 0.851, green: 0.851, blue: 0.851, alpha: 0.29).cgColor
+        profileImage.layer.borderWidth = 3
         return profileImage
     }()
     
@@ -59,6 +63,7 @@ private extension FavoriteHeaderView {
         addArrangedSubview(profileImage)
         addArrangedSubview(settingsButton)
     }
+  
   
     
     @objc func settingsButtonTapped(_ sender: UIButton!) {
