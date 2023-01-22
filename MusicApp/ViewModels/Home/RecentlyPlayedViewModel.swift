@@ -16,6 +16,8 @@ class RecentlyPlayedViewModel {
 //    private var allTracks = [TrackData]()
     lazy var allTracks = Box([TrackData]())
     
+    var newTracks = [TrackData]()
+    
     private var previousIndex: IndexPath?
     
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -57,33 +59,27 @@ class RecentlyPlayedViewModel {
     }
     
     func songInfo(indexPath: IndexPath, cellSong: inout UILabel, cellAlbum: inout UILabel, cellArtist: inout UILabel, cellTime: inout UILabel, imageURL: inout String) {
-        let song = allTracks.value[indexPath.row]
+        var allTracksReversed = [TrackData](allTracks.value.reversed())
+        let song = allTracksReversed[indexPath.row]
         cellSong.text = song.name
         cellAlbum.text = song.album?.name
         cellArtist.text = song.artists[0].name
         
         guard let songImage = song.album?.images[0].url else { return }
         imageURL = songImage
-//        let song = shortLastTracks[indexPath.row]
-//        cellSong.text = song.trackName
-//        cellAlbum.text = song.albumName
-//        cellArtist.text = song.artistName
-//
-//        guard let songImage = song.imageUrl else { return }
-//        imageURL = songImage
     }
     
     func loadTracks() {
         let request: NSFetchRequest<RecentlyPlayedTracks> = RecentlyPlayedTracks.fetchRequest()
         do{
+            print("FFFFFFFFFFFF")
             shortLastTracks = try context.fetch(request)
-            shortLastTracks = shortLastTracks.reversed()
-            if shortLastTracks.count >= 9 {
-                shortLastTracks = Array(shortLastTracks[0...9])
-            }
-            fetchData()
+                self.fetchData()
+                self.allTracks.value = self.newTracks
+                self.newTracks = []
+            
             //            раскомментировать когда нужно удалить записи в кор дате
-            //            deleteAllFromCoreData()
+//                        deleteAllFromCoreData()
         } catch {
             print("Error fetching data from context \(error)")
         }
@@ -95,7 +91,7 @@ class RecentlyPlayedViewModel {
             APIRequestManager.shared.getTrack(id: trackID) { result in
                 switch result {
                 case .success(let track):
-                    self.allTracks.value.append(track)
+                    self.newTracks.append(track)
                     break
                 case .failure(let error):
                     print(error.localizedDescription)
@@ -103,15 +99,15 @@ class RecentlyPlayedViewModel {
             }
         }
     }
-    //    func deleteAllFromCoreData() {
-    //        for i in recentlyPlayedTracks{
-    //            context.delete(i)
-    //            print("delete \(i)")
-    //        }
-    //        do {
-    //            try context.save()
-    //        } catch {
-    //            print("Error saving context \(error)")
-    //        }
-    //    }
+//        func deleteAllFromCoreData() {
+//            for i in shortLastTracks{
+//                context.delete(i)
+//                print("delete \(i)")
+//            }
+//            do {
+//                try context.save()
+//            } catch {
+//                print("Error saving context \(error)")
+//            }
+//        }
 }

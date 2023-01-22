@@ -33,8 +33,16 @@ class HomeVC: UIViewController {
         DispatchQueue.main.async {
             print("viewWillAppear")
             self.popularSongsCollectionView.reloadData()
-            self.recentlyPlayCollectionView.reloadData()
+            self.recentlyPlayCollectionView.load()
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.3) {
+                self.recentlyPlayCollectionView.load()
+            }
+            
         }
+        
+//        DispatchQueue.global(qos: .default).sync {
+//            self.recentlyPlayCollectionView.load()
+//        }
     }
     
     // MARK: - Setup UI

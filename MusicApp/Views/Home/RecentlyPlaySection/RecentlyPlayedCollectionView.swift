@@ -21,9 +21,14 @@ final class RecentlyPlayedCollectionView: UICollectionView, UICollectionViewDele
         showsVerticalScrollIndicator = false
         register(RecentlyPlayedCell.self, forCellWithReuseIdentifier: RecentlyPlayedCell.reusedID)
         translatesAutoresizingMaskIntoConstraints = false
-        self.viewModel.loadTracks()
-        bindViewModel() 
+        bindViewModel()
+//        load()
         print("reloadTable")
+    }
+    
+    func load() {
+        self.viewModel.loadTracks()
+        reloadData()
     }
     
     required init?(coder: NSCoder) {
