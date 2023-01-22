@@ -78,7 +78,7 @@ class RecentlyPlayedViewModel {
         do{
             shortLastTracks = try context.fetch(request)
             shortLastTracks = shortLastTracks.reversed()
-            if shortLastTracks.count >= 9 {
+            if shortLastTracks.count >= 99 {
                 shortLastTracks = Array(shortLastTracks[0...9])
             }
             self.allTracks.value.removeAll()
