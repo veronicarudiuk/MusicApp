@@ -45,15 +45,15 @@ class ProfileVC: UIViewController {
         }
         
         
-        APIRequestManager.shared.getTrack(id: "11dFghVXANMlKmJXsNCbNl") { result in
-            switch result {
-            case .success(let model):
-                print(model.display_name)
-                break
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
+//        APIRequestManager.shared.getTrack(id: "11dFghVXANMlKmJXsNCbNl") { result in
+//            switch result {
+//            case .success(let model):
+//                print(model.display_name)
+//                break
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            }
+//        }
     }
     
 }

@@ -98,13 +98,16 @@ private extension FavoriteTableViewCell {
 
 
   @objc func playButtonTapped(_ sender: UIButton!) {
-    //        if sender.image(for: .normal) == viewModel?.iconPlayPassive {
-    //            sender.setImage(viewModel?.iconPlayActive, for: .normal)
-    //            viewModel?.isPlaying = true
-    //        } else {
-    //            sender.setImage(viewModel?.iconPlayPassive, for: .normal)
-    //            viewModel?.isPlaying = false
-    //        }
+    APIRequestManager.shared.getTrack(id: "1a8w8nlIyIhE2W1HIayKnl") { result in
+        switch result {
+        case .success(let model):
+            print(model)
+          PlaybackManager.shared.currentTrack = model
+            break
+        case .failure(let error):
+            print(error.localizedDescription)
+        }
+    }
 
     print("PRESSED")
 
