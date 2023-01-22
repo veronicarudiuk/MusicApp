@@ -11,7 +11,6 @@ class ProfileVC: UIViewController {
     
     var userImage: UIImageView = {
         let image = UIImageView()
-//        image.image = UIImage(named: "DefaultSongMG")
         image.clipsToBounds = true
         image.layer.borderColor = UIColor(red: 0.851, green: 0.851, blue: 0.851, alpha: 0.29).cgColor
         image.layer.borderWidth = 3
@@ -159,7 +158,6 @@ class ProfileVC: UIViewController {
                     self.userNickname.text = model.display_name
                     self.userName.text = "Name: \(model.display_name)"
                     self.userEmail.text = "Email: \(model.email)"
-//                    self.userImage.image = UIImage(named: UserProfileData.Image(url: <#T##String#>))
                     break
                 case .failure(let error):
                     print(error.localizedDescription)
