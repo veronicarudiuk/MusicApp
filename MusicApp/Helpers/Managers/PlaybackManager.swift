@@ -192,7 +192,6 @@ class PlaybackManager {
     }
     
     
-    
     func play(track: URL) {
         player = AVPlayer(url: track)
         player?.pause()
@@ -200,6 +199,4 @@ class PlaybackManager {
         player?.volume = 1
         isPlaying = true
     }
-    
-
 }

@@ -15,12 +15,15 @@ final class PopularSongsCollectionView: UICollectionView, UICollectionViewDelega
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         super.init(frame: .zero, collectionViewLayout: layout)
+        self.delegate = self
+        self.dataSource = self
         
         self.viewModel.fetchData()
-        DispatchQueue.main.async {
-            self.delegate = self
-            self.dataSource = self
-        }
+        viewModel.albumData.bind { _ in
+                   DispatchQueue.main.async {
+                       self.reloadData()
+                   }
+               }
         
         backgroundColor = .clear
         showsHorizontalScrollIndicator = false
@@ -40,13 +43,13 @@ final class PopularSongsCollectionView: UICollectionView, UICollectionViewDelega
 //MARK: - UICollectionViewDataSource
 extension PopularSongsCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.albumData.count
+        return viewModel.albumData.value.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = dequeueReusableCell(withReuseIdentifier: PopularSongCell.reusedID, for: indexPath) as! PopularSongCell
 
-        let album = viewModel.albumData[indexPath.row]
+        let album = viewModel.albumData.value[indexPath.row]
         cell.albumNameLabel.text = album.name
         cell.songLabel.text = album.tracks?.items[0].name
         cell.playImage.image = viewModel.chooseButtonIcon(index: indexPath.row)

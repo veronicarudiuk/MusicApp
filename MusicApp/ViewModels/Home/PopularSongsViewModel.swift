@@ -8,7 +8,9 @@
 import UIKit
 
 class PopularSongsViewModel {
-    var albumData = [AlbumData]()
+    lazy var albumData = Box([AlbumData]())
+//    lazy var albumData = [AlbumData]()
+//    lazy var allTracks = Box([TrackData]())
     private var allTracks = [TrackData]()
     private var previousIndex: IndexPath?
     private var treckID: Int?
@@ -60,7 +62,7 @@ class PopularSongsViewModel {
         APIRequestManager.shared.getAlbum(id: album.id) { result in
             switch result {
             case .success(let data):
-                self.albumData.append(data)
+                self.albumData.value.append(data)
                 var track = data.tracks?.items[0]
                 track?.album = album
                 if let track = track {
