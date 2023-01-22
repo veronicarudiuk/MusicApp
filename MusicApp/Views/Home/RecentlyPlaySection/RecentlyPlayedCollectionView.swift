@@ -25,6 +25,12 @@ final class RecentlyPlayedCollectionView: UICollectionView, UICollectionViewDele
         bindViewModel() 
         print("reloadTable")
     }
+
+  func reloadAll() {
+    self.viewModel.loadTracks()
+    bindViewModel()
+    print("reloadTable")
+  }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

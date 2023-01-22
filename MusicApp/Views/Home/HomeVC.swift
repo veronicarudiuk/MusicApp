@@ -32,6 +32,7 @@ class HomeVC: UIViewController {
         super.viewWillAppear(animated)
         DispatchQueue.main.async {
             print("viewWillAppear")
+          self.recentlyPlayCollectionView.reloadAll()
             self.popularSongsCollectionView.reloadData()
             self.recentlyPlayCollectionView.reloadData()
         }
