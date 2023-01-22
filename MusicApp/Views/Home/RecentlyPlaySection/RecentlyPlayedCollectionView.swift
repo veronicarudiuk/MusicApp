@@ -73,7 +73,8 @@ extension RecentlyPlayedCollectionView: UICollectionViewDataSource {
 extension RecentlyPlayedCollectionView: UICollectionViewDelegateFlowLayout {
     //    устанавливаю размер ячейки
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 350, height: 90)
+        let width = UIScreen.main.bounds.width - 42
+        return CGSize(width: width, height: 90)
     }
 }
 
