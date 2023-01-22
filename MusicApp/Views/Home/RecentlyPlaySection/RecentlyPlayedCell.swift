@@ -21,13 +21,11 @@ final class RecentlyPlayedCell: UICollectionViewCell {
         return imageView
     }()
     
-    lazy var playButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.setImage(UIImage(named: "PlayIconInactive"), for: .normal)
-        button.setImage(UIImage(named: "PlayIconActive"), for: .selected)
-        button.addTarget(target, action: #selector(playButtonPressed(_:)), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
+    let playImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "PlayIconInactive")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }()
     
     lazy var songLabel: UILabel = {
@@ -81,7 +79,7 @@ final class RecentlyPlayedCell: UICollectionViewCell {
         layer.cornerRadius = 8
         layer.masksToBounds = true
         addSubview(songImageView)
-        addSubview(playButton)
+        addSubview(playImage)
         addSubview(songLabel)
         addSubview(albumNameLabel)
         addSubview(circleDividerImage)
@@ -99,14 +97,14 @@ final class RecentlyPlayedCell: UICollectionViewCell {
             songImageView.heightAnchor.constraint(equalToConstant: 71),
             songImageView.widthAnchor.constraint(equalToConstant: 72),
             
-            playButton.centerYAnchor.constraint(equalTo: centerYAnchor),
-            playButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11),
-            playButton.heightAnchor.constraint(equalToConstant: 26),
-            playButton.widthAnchor.constraint(equalToConstant: 26),
+            playImage.centerYAnchor.constraint(equalTo: centerYAnchor),
+            playImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11),
+            playImage.heightAnchor.constraint(equalToConstant: 26),
+            playImage.widthAnchor.constraint(equalToConstant: 26),
             
             songLabel.leadingAnchor.constraint(equalTo: songImageView.trailingAnchor, constant: 12),
             songLabel.topAnchor.constraint(equalTo: topAnchor, constant: 13),
-            songLabel.trailingAnchor.constraint(equalTo: playButton.leadingAnchor, constant: -8),
+            songLabel.trailingAnchor.constraint(equalTo: playImage.leadingAnchor, constant: -8),
             
             albumNameLabel.topAnchor.constraint(equalTo: songLabel.bottomAnchor, constant: 4),
             albumNameLabel.leadingAnchor.constraint(equalTo: songImageView.trailingAnchor, constant: 12),
@@ -122,10 +120,6 @@ final class RecentlyPlayedCell: UICollectionViewCell {
             timeLabel.leadingAnchor.constraint(equalTo: songLabel.leadingAnchor),
             timeLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -14)
         ])
-    }
-    
-    @objc func playButtonPressed(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
     }
     
     required init?(coder: NSCoder) {

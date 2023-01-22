@@ -19,46 +19,6 @@ class PlayVC: UIViewController {
         return label
     }()
     
-    private lazy var horisontalScrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.showsHorizontalScrollIndicator = false
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        return scrollView
-    }()
-    
-    private lazy var lyricsScrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        return scrollView
-    }()
-    
-    private lazy var horisontalСontentView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    private lazy var lyricsLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        let lyrics = """
-                    Imagine there's no heaven
-                    It's easy if you try
-                    No hell below us
-                    Above us, only sky
-                    Imagine all the people
-                    Living for today
-                    \n
-                    """
-        label.text = String(repeating: lyrics, count: 10)
-        label.textColor = .white
-        label.font = UIFont(name: K.Fonts.interSemiBold, size: 16)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
     private lazy var songImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "DefaultSongMG")
@@ -78,13 +38,6 @@ class PlayVC: UIViewController {
         label.font = UIFont(name: K.Fonts.interSemiBold, size: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
-    }()
-    
-    private lazy var pageControl: UIPageControl = {
-        let control = UIPageControl()
-        control.numberOfPages = 2
-        control.translatesAutoresizingMaskIntoConstraints = false
-        return control
     }()
     
     private lazy var songNameLabel: UILabel = {
@@ -250,21 +203,12 @@ class PlayVC: UIViewController {
     }
 }
 
-//MARK: - UIScrollView Delegate
-extension PlayVC: UIScrollViewDelegate {
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let pageNumber = round(scrollView.contentOffset.x / scrollView.frame.size.width)
-        pageControl.currentPage = Int(pageNumber)
-    }
-}
-
 //MARK: - Set up Views
 extension PlayVC {
     private func setupViews(){
         view.backgroundColor = UIColor(named: K.BrandColors.darkBG)
         navigationController?.isNavigationBarHidden = true
         view.addSubview(titleLabel)
-        view.addSubview(pageControl)
         view.addSubview(songNameLabel)
         view.addSubview(albumNameLabel)
         view.addSubview(circleDividerImage)
@@ -276,59 +220,23 @@ extension PlayVC {
         view.addSubview(rewindButton)
         view.addSubview(playButton)
         view.addSubview(fastForwardButton)
-        view.addSubview(horisontalScrollView)
-        
-        horisontalScrollView.delegate = self
-        
-        horisontalScrollView.addSubview(horisontalСontentView)
-        horisontalСontentView.addSubview(songImage)
-        horisontalСontentView.addSubview(lyricsScrollView)
-        lyricsScrollView.addSubview(lyricsLabel)
+        view.addSubview(songImage)
     }
 }
 
 //MARK: - Set up Constraints
 extension PlayVC {
     func setupConstraints() {
-        let scrollContentGuide = horisontalScrollView.contentLayoutGuide
-        let scrollFrameGuide = horisontalScrollView.frameLayoutGuide
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            horisontalScrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            horisontalScrollView.heightAnchor.constraint(equalToConstant: 396),
-            horisontalScrollView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
-            horisontalScrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            songImage.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
+            songImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 21),
+            songImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -21),
+            songImage.heightAnchor.constraint(equalToConstant: 396),
             
-            horisontalСontentView.leadingAnchor.constraint(equalTo: scrollContentGuide.leadingAnchor),
-            horisontalСontentView.trailingAnchor.constraint(equalTo: scrollContentGuide.trailingAnchor),
-            horisontalСontentView.topAnchor.constraint(equalTo: scrollContentGuide.topAnchor),
-            horisontalСontentView.bottomAnchor.constraint(equalTo: scrollContentGuide.bottomAnchor),
-            
-            horisontalСontentView.widthAnchor.constraint(equalToConstant: (CGFloat(view.frame.width) * 2)),
-            horisontalСontentView.topAnchor.constraint(equalTo: scrollFrameGuide.topAnchor),
-            horisontalСontentView.bottomAnchor.constraint(equalTo: scrollFrameGuide.bottomAnchor),
-            
-            songImage.topAnchor.constraint(equalTo: horisontalСontentView.topAnchor),
-            songImage.leadingAnchor.constraint(equalTo: horisontalСontentView.leadingAnchor, constant: 21),
-            songImage.heightAnchor.constraint(equalTo: horisontalСontentView.heightAnchor),
-            songImage.widthAnchor.constraint(equalToConstant: 343),
-            
-            lyricsScrollView.widthAnchor.constraint(equalTo: songImage.widthAnchor),
-            lyricsScrollView.topAnchor.constraint(equalTo: horisontalСontentView.topAnchor),
-            lyricsScrollView.bottomAnchor.constraint(equalTo: horisontalСontentView.bottomAnchor),
-            lyricsScrollView.trailingAnchor.constraint(equalTo: horisontalСontentView.trailingAnchor, constant: -21),
-            
-            lyricsLabel.centerXAnchor.constraint(equalTo: lyricsScrollView.centerXAnchor),
-            lyricsLabel.widthAnchor.constraint(equalTo: lyricsScrollView.widthAnchor),
-            lyricsLabel.topAnchor.constraint(equalTo: lyricsScrollView.topAnchor),
-            lyricsLabel.bottomAnchor.constraint(equalTo: lyricsScrollView.bottomAnchor),
-            
-            pageControl.topAnchor.constraint(equalTo: horisontalScrollView.bottomAnchor, constant: 10),
-            pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            
-            songNameLabel.topAnchor.constraint(equalTo: pageControl.bottomAnchor, constant: 20),
+            songNameLabel.topAnchor.constraint(equalTo: songImage.bottomAnchor, constant: 20),
             songNameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 21),
             
             albumNameLabel.topAnchor.constraint(equalTo: songNameLabel.bottomAnchor, constant: 10),

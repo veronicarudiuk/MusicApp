@@ -12,12 +12,12 @@ struct NewReleasesData: Decodable {
 }
 
 struct AlbumsResponse: Decodable {
-    let items: [Album]
+    let items: [AlbumData]
 }
 
-struct Album: Decodable {
-    let id: String
-}
+//struct Album: Decodable {
+//    let id: String
+//}
 
 //struct Images: Decodable {
 //    let url: String

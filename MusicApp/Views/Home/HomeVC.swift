@@ -8,8 +8,6 @@
 import UIKit
 
 class HomeVC: UIViewController {
-    var newReleasesAlbums: NewReleasesData?
-    var albumData: AlbumData?
     
     private lazy var titleLabelTop = UILabel()
     private lazy var titleLabelBottom = UILabel()
@@ -27,55 +25,28 @@ class HomeVC: UIViewController {
         setUpTopSection()
         setupPopularSongCollecrionView()
         setupRecentlyPlaySection()
-        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
-        fetchData()
-    }
-    
-    func fetchData() {
-        APIRequestManager.shared.getNewReleases{ result in
-            switch result {
-            case .success(let data):
-                self.newReleasesAlbums = data
-                getAlbum()
-                //                print(self.newReleasesAlbums?.albums.items[0].id)
-            case .failure(let error):
-                print(error)
-            }
-        }
-        
-        func getAlbum() {
-            guard let newReleasesAlbums = newReleasesAlbums else { return }
-            let albumID = newReleasesAlbums.albums.items[0].id
-            APIRequestManager.shared.getAlbum(id: albumID) { result in
-                switch result {
-                case .success(let data):
-                    self.albumData = data
-                    print("Имя альбома: \(String(describing: self.albumData?.tracks?.items[0].name))")
-                case .failure(let error):
-                    print(error)
-                }
-            }
-        }
     }
     
     //MARK: - viewWillAppear
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         DispatchQueue.main.async {
+            print("viewWillAppear")
+            self.popularSongsCollectionView.reloadData()
             self.recentlyPlayCollectionView.reloadData()
         }
     }
     
-    
     // MARK: - Setup UI
+    
     private func setUpTopSection() {
-        
+        titleLabelTop.text = "Hello"
         APIRequestManager.shared.gerCurrentUserProfile { result in
             switch result {
             case .success(let model):
                 let name = model.display_name
                 DispatchQueue.main.async {
-                    self.titleLabelTop.text = "Hello \(name),"
+                    self.titleLabelTop.text = "Hello \(name)!"
                 }
                 break
             case .failure(let error):
@@ -108,10 +79,14 @@ class HomeVC: UIViewController {
         popularSongSectionTitle.textColor = .white
         popularSongSectionTitle.font = UIFont(name: K.Fonts.interSemiBold, size: 16)
         
+//        пока данные не подгрузятся будет видна загрузочная вью
+        
         view.addSubview(popularSongSectionTitle)
         view.addSubview(popularSongsCollectionView)
+        
         popularSongSectionTitle.translatesAutoresizingMaskIntoConstraints = false
         popularSongsCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
             popularSongSectionTitle.topAnchor.constraint(equalTo: titleLabelBottom.bottomAnchor, constant: 32),
             popularSongSectionTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 21),
