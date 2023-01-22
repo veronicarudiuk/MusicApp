@@ -16,11 +16,11 @@ final class PopularSongsCollectionView: UICollectionView, UICollectionViewDelega
         layout.scrollDirection = .horizontal
         super.init(frame: .zero, collectionViewLayout: layout)
         
-//        self.viewModel.fetchData()
-//        DispatchQueue.main.async {
+        self.viewModel.fetchData()
+        DispatchQueue.main.async {
             self.delegate = self
             self.dataSource = self
-//        }
+        }
         
         backgroundColor = .clear
         showsHorizontalScrollIndicator = false

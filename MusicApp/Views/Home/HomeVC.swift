@@ -18,18 +18,11 @@ class HomeVC: UIViewController {
     private lazy var recentlyPlaySectionTitle = UILabel()
     private lazy var recentlyPlayCollectionView = RecentlyPlayedCollectionView()
     
-    private lazy var loadingView = UIView()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = true
         view.backgroundColor = UIColor(named: K.BrandColors.darkBG)
         setUpTopSection()
-        
-        popularSongsCollectionView.viewModel.fetchData()
-        DispatchQueue.main.async {
-            self.loadingView.isHidden = true
-        }
         setupPopularSongCollecrionView()
         setupRecentlyPlaySection()
     }
@@ -38,6 +31,7 @@ class HomeVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         DispatchQueue.main.async {
+            self.popularSongsCollectionView.reloadData()
             self.recentlyPlayCollectionView.reloadData()
         }
     }
@@ -85,21 +79,12 @@ class HomeVC: UIViewController {
         popularSongSectionTitle.font = UIFont(name: K.Fonts.interSemiBold, size: 16)
         
 //        пока данные не подгрузятся будет видна загрузочная вью
-        loadingView.backgroundColor = UIColor(named: K.BrandColors.darkBG)
-        let downloadIndicator = UIActivityIndicatorView()
-        downloadIndicator.style = UIActivityIndicatorView.Style.large
-        downloadIndicator.color = UIColor(named: K.BrandColors.blueColor)
-        downloadIndicator.startAnimating()
         
         view.addSubview(popularSongSectionTitle)
         view.addSubview(popularSongsCollectionView)
-        view.addSubview(loadingView)
-        loadingView.addSubview(downloadIndicator)
         
         popularSongSectionTitle.translatesAutoresizingMaskIntoConstraints = false
         popularSongsCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        downloadIndicator.translatesAutoresizingMaskIntoConstraints = false
-        loadingView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             popularSongSectionTitle.topAnchor.constraint(equalTo: titleLabelBottom.bottomAnchor, constant: 32),
@@ -108,15 +93,7 @@ class HomeVC: UIViewController {
             popularSongsCollectionView.topAnchor.constraint(equalTo: popularSongSectionTitle.bottomAnchor, constant: 10),
             popularSongsCollectionView.leadingAnchor.constraint(equalTo: popularSongSectionTitle.leadingAnchor),
             popularSongsCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            popularSongsCollectionView.heightAnchor.constraint(equalToConstant: 160),
-            
-            loadingView.topAnchor.constraint(equalTo: popularSongsCollectionView.topAnchor),
-            loadingView.bottomAnchor.constraint(equalTo: popularSongsCollectionView.bottomAnchor),
-            loadingView.leadingAnchor.constraint(equalTo: popularSongsCollectionView.leadingAnchor),
-            loadingView.trailingAnchor.constraint(equalTo: popularSongsCollectionView.trailingAnchor),
-
-            downloadIndicator.centerYAnchor.constraint(equalTo: loadingView.centerYAnchor),
-            downloadIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            popularSongsCollectionView.heightAnchor.constraint(equalToConstant: 160)
         ])
     }
     
