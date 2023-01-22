@@ -30,11 +30,11 @@ class HomeVC: UIViewController {
     //MARK: - viewWillAppear
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        DispatchQueue.main.async {
-            print("viewWillAppear")
-            self.popularSongsCollectionView.reloadData()
-            self.recentlyPlayCollectionView.reloadData()
-        }
+        self.recentlyPlayCollectionView.reloadAll()
+          self.popularSongsCollectionView.reloadData()
+          self.recentlyPlayCollectionView.reloadData()
+      
+
     }
     
     // MARK: - Setup UI
