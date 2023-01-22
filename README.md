@@ -1,6 +1,6 @@
 # MusicApp
 
-An iOS music app that consumes the official Spotify's Web API to show(and play) songs.
+An iOS music app that consumes the official [Spotify's Web API](https://developer.spotify.com/documentation/web-api/reference/#/) to show(and play) songs.
 
 <a href="https://developer.apple.com/swift" target="_blank"><img src="https://img.shields.io/badge/Language-Swift_5-blueviolet.svg" alt="Language: Swift 5" /></a>
 
