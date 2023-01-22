@@ -28,7 +28,7 @@ class PlaybackManager {
         currentTrack = list[currentTrackIndex ?? 0]
         
         guard let currentTrack = currentTrack else {return}
-        print(currentTrack.name)
+//        print(currentTrack.name)
         if !alreadyInRecentlyPlayed(for: currentTrack.id) {
             addTrackToRecentlyPlayed(currentTrack)
         }

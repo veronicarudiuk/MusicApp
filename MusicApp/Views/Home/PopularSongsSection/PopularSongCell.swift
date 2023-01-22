@@ -13,7 +13,6 @@ final class PopularSongCell: UICollectionViewCell {
     
     lazy var songImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "DefaultAlbumIMG")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 9

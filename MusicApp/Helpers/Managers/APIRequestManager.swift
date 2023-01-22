@@ -23,7 +23,7 @@ final class APIRequestManager {
                 do {
                     //let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
                   let result = try JSONDecoder().decode(TrackData.self, from: data)
-                  print(result)
+//                  print(result)
                   completion(.success(result))
                 } catch {
                     print(error.localizedDescription)
@@ -81,7 +81,7 @@ final class APIRequestManager {
     
     // MARK: - Get New Releases
     public func getNewReleases(completion: @escaping (Result<NewReleasesData, Error>) -> Void) {
-        createRequest(with: URL(string: K.API.baseAPIURL + "/browse/new-releases?limit=30"), type: .GET) { baseRequest in
+        createRequest(with: URL(string: K.API.baseAPIURL + "/browse/new-releases?limit=15"), type: .GET) { baseRequest in
             URLSession.shared.dataTask(with: baseRequest) { data, _, error in
                 guard let data = data, error == nil else {
                     completion(.failure(APIError.failedToGetData))

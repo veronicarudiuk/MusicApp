@@ -39,7 +39,7 @@ final class PopularSongsCollectionView: UICollectionView, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 30
+        return 20
     }
 }
 
@@ -77,8 +77,8 @@ extension PopularSongsCollectionView: UICollectionViewDelegateFlowLayout {
 //MARK: - ShowPecipeDataDelegate
 extension PopularSongsCollectionView {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("PopularSongsCell did tap")
-        print(indexPath)
+//        print("PopularSongsCell did tap")
+//        print(indexPath)
         viewModel.playFromTrackList(index: indexPath, for: collectionView)
     }
 }

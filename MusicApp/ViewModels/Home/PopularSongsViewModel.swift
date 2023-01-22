@@ -9,14 +9,10 @@ import UIKit
 
 class PopularSongsViewModel {
     lazy var albumData = Box([AlbumData]())
-//    lazy var albumData = [AlbumData]()
-//    lazy var allTracks = Box([TrackData]())
     private var allTracks = [TrackData]()
     private var previousIndex: IndexPath?
-    private var treckID: Int?
 
-
-    
+//    логика проигрывания песни
     func playFromTrackList(index: IndexPath, for collection: UICollectionView) {
         let cell = collection.cellForItem(at: index) as! PopularSongCell
         PlaybackManager.shared.pause()
@@ -33,20 +29,6 @@ class PopularSongsViewModel {
         PlaybackManager.shared.trackList = allTracks
         PlaybackManager.shared.playTrack(playIndex: index.row)
         cell.playImage.image = UIImage(named: "StopActive")
-        
-//        проверяю есть ли айдишка трека
-        guard let currentTrack = allTracks[index.row].preview_url else { return }
-        print(currentTrack)
-        
-//        PlaybackManager.shared.pause()
-//
-//        if previousIndex != index {
-//            previousIndex = index
-//            PlaybackManager.shared.trackList = allTracks
-//            PlaybackManager.shared.playTrack(playIndex: index.row)
-//        }
-//
-//        collection.reloadData()
     }
 
     func chooseButtonIcon(index: Int) -> UIImage {
@@ -60,6 +42,7 @@ class PopularSongsViewModel {
 
     }
     
+//    делаю запрос на список новых альбомов
     func fetchData() {
         APIRequestManager.shared.getNewReleases{ result in
             switch result {
@@ -71,6 +54,7 @@ class PopularSongsViewModel {
         }
     }
     
+//    запрашиваю данные о каждом альбоме из списка новых альбомов
     func getAllAlbums(newReleasesData: NewReleasesData) {
         let albumItems = newReleasesData.albums.items
         for item in albumItems {
@@ -78,6 +62,7 @@ class PopularSongsViewModel {
         }
     }
     
+//    добавляю данные о первой песне в каждом альбоме в allTracks
     func getAlbum(album: AlbumData) {
         APIRequestManager.shared.getAlbum(id: album.id) { result in
             switch result {
