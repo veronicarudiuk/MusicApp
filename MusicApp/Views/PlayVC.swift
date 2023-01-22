@@ -207,6 +207,7 @@ class PlayVC: UIViewController {
             self.albumNameLabel.text = self.viewModel.albumName
             self.musicianNameLabel.text = self.viewModel.artistName
             self.playButton.isSelected = !self.viewModel.isPlaying
+            self.heartButton.isSelected = self.viewModel.isLikedTrack
         }
         self.cachedImage(url: self.viewModel.songImage) { [weak self] image in
             DispatchQueue.main.async {
@@ -235,10 +236,12 @@ class PlayVC: UIViewController {
         updateView()
     }
     
-    //MARK: - heartButtonAction
-    @objc func heartButtonPressed(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
-    }
+  //MARK: - heartButtonAction
+  @objc func heartButtonPressed(_ sender: UIButton) {
+    sender.isSelected = !sender.isSelected
+    viewModel.heartButtonPressed()
+
+  }
     
     //MARK: - playButtonAction
     @objc func playButtonPressed(_ sender: UIButton) {

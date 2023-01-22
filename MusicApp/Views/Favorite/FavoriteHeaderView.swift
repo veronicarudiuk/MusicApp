@@ -59,6 +59,7 @@ private extension FavoriteHeaderView {
         addArrangedSubview(profileImage)
         addArrangedSubview(settingsButton)
     }
+  
     
     @objc func settingsButtonTapped(_ sender: UIButton!) {
         
