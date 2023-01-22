@@ -11,9 +11,8 @@ final class PopularSongCell: UICollectionViewCell {
     
     static let reusedID = "PopularSongCell"
     
-    private lazy var songImageView: UIImageView = {
+    lazy var songImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "DefaultAlbumIMG")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 9
@@ -29,16 +28,14 @@ final class PopularSongCell: UICollectionViewCell {
         return imageView
     }()
     
-    private lazy var playButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.setImage(UIImage(named: "PlayIconInactive"), for: .normal)
-        button.setImage(UIImage(named: "PlayIconActive"), for: .selected)
-        button.addTarget(target, action: #selector(playButtonPressed(_:)), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
+    let playImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "PlayIconInactive")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }()
     
-    private lazy var songLabel: UILabel = {
+    lazy var songLabel: UILabel = {
         let label = UILabel()
         label.text = "Adiyee"
         label.textColor = .white
@@ -47,7 +44,7 @@ final class PopularSongCell: UICollectionViewCell {
         return label
     }()
     
-    private lazy var albumNameLabel: UILabel = {
+    lazy var albumNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Bachelor"
         label.textColor = .white
@@ -61,7 +58,7 @@ final class PopularSongCell: UICollectionViewCell {
         super.init(frame: frame)
         
         addSubview(songImageView)
-        addSubview(playButton)
+        addSubview(playImage)
         addSubview(songLabel)
         addSubview(albumNameLabel)
         
@@ -75,23 +72,19 @@ final class PopularSongCell: UICollectionViewCell {
             songImageView.topAnchor.constraint(equalTo: topAnchor),
             songImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            playButton.topAnchor.constraint(equalTo: topAnchor, constant: 122),
-            playButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -23.5),
-            playButton.heightAnchor.constraint(equalToConstant: 20.5),
-            playButton.widthAnchor.constraint(equalToConstant: 20.5),
+            playImage.topAnchor.constraint(equalTo: topAnchor, constant: 122),
+            playImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            playImage.heightAnchor.constraint(equalToConstant: 20.5),
+            playImage.widthAnchor.constraint(equalToConstant: 20.5),
             
-            songLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 23),
-            songLabel.trailingAnchor.constraint(equalTo: playButton.leadingAnchor, constant: -8),
+            songLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             songLabel.topAnchor.constraint(equalTo: topAnchor, constant: 116),
+            songLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 100),
             
             albumNameLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12),
-            albumNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 23),
-            albumNameLabel.trailingAnchor.constraint(equalTo: playButton.leadingAnchor, constant: -8)
+            albumNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            albumNameLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 110)
         ])
-    }
-    
-    @objc func playButtonPressed(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
     }
     
     required init?(coder: NSCoder) {

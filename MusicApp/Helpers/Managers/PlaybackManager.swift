@@ -28,7 +28,7 @@ class PlaybackManager {
         currentTrack = list[currentTrackIndex ?? 0]
         
         guard let currentTrack = currentTrack else {return}
-        print(currentTrack.name)
+//        print(currentTrack.name)
         if !alreadyInRecentlyPlayed(for: currentTrack.id) {
             addTrackToRecentlyPlayed(currentTrack)
         }
@@ -79,7 +79,6 @@ class PlaybackManager {
     
     func playTrack(playIndex: Int) {
         guard playIndex != trackList?.count else { return }
-
         currentTrackIndex = playIndex
     }
     
@@ -165,10 +164,8 @@ class PlaybackManager {
       newTrack.albumName = trackData.album?.name
       newTrack.artistName = trackData.artists[0].name
       newTrack.addedTime = Date()
-      //        if let time = trackDuration {
-      //            newTrack.duration = "0:\(String(describing: Int(time)))"
-      //        }
       newTrack.imageUrl = trackData.album?.images[0].url
+      newTrack.preview_url = trackData.preview_url
       saveItems()
   }
 
@@ -195,14 +192,11 @@ class PlaybackManager {
     }
     
     
-    
-    private func play(track: URL) {
+    func play(track: URL) {
         player = AVPlayer(url: track)
         player?.pause()
         player?.play()
         player?.volume = 1
         isPlaying = true
     }
-    
-    
 }

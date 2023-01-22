@@ -131,6 +131,6 @@ class TutorialFirstScreenVC: UIViewController {
             self.present(vc, animated: true)
         }
         self.dismiss(animated: true)
-        print("Skip button tapped")
+//        print("Skip button tapped")
     }
 }

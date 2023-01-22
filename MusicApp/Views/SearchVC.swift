@@ -116,7 +116,7 @@ extension SearchVC: UISearchResultsUpdating {
         guard let query = searchController.searchBar.text, query != "" else { return }
         self.lastReques = query
         guard let resultsController = searchController.searchResultsController as? SearchResultsVC else { return }
-        print(query)
+//        print(query)
         viewModel.fetchData(withQuery: query) { [weak self] in
             DispatchQueue.main.async {
                 resultsController.viewModel = self?.viewModel
@@ -141,7 +141,7 @@ extension SearchVC: UISearchBarDelegate {
         guard let lastReques = lastReques else { return }
         recentSearch.append(lastReques)
         UserDefaults.standard.set(recentSearch, forKey: "recentSearch")
-        print(recentSearch)
+//        print(recentSearch)
 
     }
     

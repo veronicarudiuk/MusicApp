@@ -22,6 +22,7 @@ final class APIRequestManager {
                 
                 do {
                   let result = try JSONDecoder().decode(TrackData.self, from: data)
+//                  print(result)
                   completion(.success(result))
                 } catch {
                     print(error.localizedDescription)
@@ -79,7 +80,7 @@ final class APIRequestManager {
     
     // MARK: - Get New Releases
     public func getNewReleases(completion: @escaping (Result<NewReleasesData, Error>) -> Void) {
-        createRequest(with: URL(string: K.API.baseAPIURL + "/browse/new-releases?limit=10"), type: .GET) { baseRequest in
+        createRequest(with: URL(string: K.API.baseAPIURL + "/browse/new-releases?limit=15"), type: .GET) { baseRequest in
             URLSession.shared.dataTask(with: baseRequest) { data, _, error in
                 guard let data = data, error == nil else {
                     completion(.failure(APIError.failedToGetData))
@@ -88,10 +89,9 @@ final class APIRequestManager {
                 
                 do {
                     let result = try JSONDecoder().decode(NewReleasesData.self, from: data)
-                    print(result)
                     completion(.success(result))
                 } catch {
-                    print(" ОШИБОЧКА \(String(describing: error))")
+                    print(error.localizedDescription)
                     completion(.failure(error))
                 }
                 

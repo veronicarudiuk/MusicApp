@@ -50,6 +50,7 @@
 		5883E6D0296C4FA0009BFA44 /* FavoriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883E6CF296C4FA0009BFA44 /* FavoriteVC.swift */; };
 		5883E6D2296C4FB0009BFA44 /* PlayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883E6D1296C4FB0009BFA44 /* PlayVC.swift */; };
 		5883E6D6296C4FD4009BFA44 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883E6D5296C4FD4009BFA44 /* ProfileVC.swift */; };
+		58D62311297C39C700AE2B8B /* PopularSongsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D62310297C39C700AE2B8B /* PopularSongsViewModel.swift */; };
 		58F3DF12297B216F0080992C /* FavoriteHeaderViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F3DF11297B216F0080992C /* FavoriteHeaderViewViewModel.swift */; };
 		58F3DF14297B21780080992C /* FavoriteTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F3DF13297B21780080992C /* FavoriteTableViewCellViewModel.swift */; };
 		58F3DF16297B217D0080992C /* FavoriteTableViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F3DF15297B217D0080992C /* FavoriteTableViewViewModel.swift */; };
@@ -107,6 +108,7 @@
 		5883E6CF296C4FA0009BFA44 /* FavoriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVC.swift; sourceTree = "<group>"; };
 		5883E6D1296C4FB0009BFA44 /* PlayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayVC.swift; sourceTree = "<group>"; };
 		5883E6D5296C4FD4009BFA44 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		58D62310297C39C700AE2B8B /* PopularSongsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularSongsViewModel.swift; sourceTree = "<group>"; };
 		58F3DF11297B216F0080992C /* FavoriteHeaderViewViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteHeaderViewViewModel.swift; sourceTree = "<group>"; };
 		58F3DF13297B21780080992C /* FavoriteTableViewCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		58F3DF15297B217D0080992C /* FavoriteTableViewViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewViewModel.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 		58362A0F297AEE090011BB17 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				58D62310297C39C700AE2B8B /* PopularSongsViewModel.swift */,
 				58362A10297AEE280011BB17 /* RecentlyPlayedViewModel.swift */,
 			);
 			path = Home;
@@ -462,6 +465,7 @@
 				587298152979769A005FEE7E /* PopularSongCollectionView.swift in Sources */,
 				01B8E93E29784D36004AFA77 /* PlaybackManager.swift in Sources */,
 				5883E66C296C2736009BFA44 /* SceneDelegate.swift in Sources */,
+				58D62311297C39C700AE2B8B /* PopularSongsViewModel.swift in Sources */,
 				58362A14297AEEA00011BB17 /* Box.swift in Sources */,
 				013E4BF629779898006662D9 /* ImageCacheExtension.swift in Sources */,
 				5883E674296C2736009BFA44 /* MusicApp.xcdatamodeld in Sources */,
