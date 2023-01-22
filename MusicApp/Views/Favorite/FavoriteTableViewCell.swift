@@ -8,15 +8,11 @@
 import UIKit
 import CoreData
 
-protocol FavoriteTableViewCellDelegate {
-  func playButtonPressed()
-}
 
 class FavoriteTableViewCell: UITableViewCell {
 
   var trackID: String?
 
-  var delegate: FavoriteTableViewCellDelegate?
   static var reuseIdentifier: String = String(describing: FavoriteTableViewCell.self)
 
   private lazy var trackName: UILabel = {
@@ -112,7 +108,5 @@ private extension FavoriteTableViewCell {
 
     print("PRESSED")
 
-
-    delegate?.playButtonPressed()
   }
 }
