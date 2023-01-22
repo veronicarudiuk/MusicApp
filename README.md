@@ -24,8 +24,7 @@ Device Orientation: Portrait
 
 Download all the files from this repo onto a local directory. Compile the program on Xcode.
 
-![Simulator Screen Recording - iPhone 14 Pro - 2023-01-22 at 20 29 57](https://user-images.githubusercontent.com/105722412/213927392-0831d450-69b9-4f02-8a5f-21e26de9a491.gif)
-
+![Simulator Screen Recording - iPhone 14 Pro - 2023-01-22 at 20 29 57-4](https://user-images.githubusercontent.com/105722412/213938917-7a1e20bd-ff2b-4504-8c6c-574aa0a159cc.gif)
 
 ## Contributors
 
