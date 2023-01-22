@@ -10,6 +10,7 @@ import UIKit
 struct FavoriteTableViewCellViewModel {
   let artist: String
   let track: String
+  let trackID: String
   var currentIcon: UIImage {
     isPlaying ? UIImage(named: "StopIcon")! : UIImage(named: "PlayIconActive")!
   }

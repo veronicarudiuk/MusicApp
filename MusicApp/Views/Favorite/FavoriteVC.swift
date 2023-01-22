@@ -115,9 +115,9 @@ private extension FavoriteVC {
     startLabel.isHidden = !data.isEmpty
     var sections: [[FavoriteTableViewCellViewModel]] = []
     for item in data {
-      guard let artist = item.artistName, let track = item.trackName else { return }
+      guard let artist = item.artistName, let track = item.trackName, let trackID = item.trackId else { return }
       let playing_now = (PlaybackManager.shared.isPlaying == true) && (PlaybackManager.shared.currentTrack?.name == item.trackName)
-      sections.append([FavoriteTableViewCellViewModel(artist: artist, track: track, isPlaying: playing_now)])
+      sections.append([FavoriteTableViewCellViewModel(artist: artist, track: track, trackID: trackID, isPlaying: playing_now)])
     }
     let viewModel = FavoriteTableViewViewModel(sections: sections, header: FavoriteHeaderViewViewModel(icon: self.headerView.viewModel?.icon ))
     tableView.viewModel = viewModel

@@ -21,9 +21,7 @@ final class APIRequestManager {
                 }
                 
                 do {
-                    //let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
                   let result = try JSONDecoder().decode(TrackData.self, from: data)
-                  print(result)
                   completion(.success(result))
                 } catch {
                     print(error.localizedDescription)

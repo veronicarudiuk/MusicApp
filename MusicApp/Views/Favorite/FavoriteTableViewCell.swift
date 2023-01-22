@@ -14,7 +14,7 @@ protocol FavoriteTableViewCellDelegate {
 
 class FavoriteTableViewCell: UITableViewCell {
 
-  var track: SearchData?
+  var trackID: String?
 
   var delegate: FavoriteTableViewCellDelegate?
   static var reuseIdentifier: String = String(describing: FavoriteTableViewCell.self)
@@ -53,6 +53,7 @@ class FavoriteTableViewCell: UITableViewCell {
       trackName.text = viewModel?.track
       artistName.text = viewModel?.artist
       playButton.setImage(viewModel?.currentIcon, for: .normal)
+      trackID = viewModel?.trackID
     }
   }
 
@@ -98,10 +99,10 @@ private extension FavoriteTableViewCell {
 
 
   @objc func playButtonTapped(_ sender: UIButton!) {
-    APIRequestManager.shared.getTrack(id: "1a8w8nlIyIhE2W1HIayKnl") { result in
+    guard let trackID = trackID else { return }
+    APIRequestManager.shared.getTrack(id: trackID) { result in
         switch result {
         case .success(let model):
-            print(model)
           PlaybackManager.shared.currentTrack = model
             break
         case .failure(let error):
