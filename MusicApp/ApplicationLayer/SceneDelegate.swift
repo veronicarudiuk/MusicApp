@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        UserDefaults.standard.set(false, forKey: "SEEN-TUTORIAL")
         
         let seenTutorial = UserDefaults.standard.bool(forKey: "SEEN-TUTORIAL")
-        let rootViewController = seenTutorial ? AuthManager.shared.choosePresentingVC() : TutorialFirstScreenVC()
+        let rootViewController = seenTutorial ? AuthManager.shared.choosePresentingVC() : TutorialScreenVC()
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.overrideUserInterfaceStyle = .light
         window?.rootViewController = rootViewController
