@@ -21,8 +21,9 @@ final class RecentlyPlayedCollectionView: UICollectionView, UICollectionViewDele
         showsVerticalScrollIndicator = false
         register(RecentlyPlayedCell.self, forCellWithReuseIdentifier: RecentlyPlayedCell.reusedID)
         translatesAutoresizingMaskIntoConstraints = false
-        self.viewModel.loadTracks()
-        bindViewModel() 
+        
+        //self.viewModel.loadTracks()
+        //bindViewModel() 
         print("reloadTable")
     }
 
@@ -60,9 +61,14 @@ extension RecentlyPlayedCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = dequeueReusableCell(withReuseIdentifier: RecentlyPlayedCell.reusedID, for: indexPath) as! RecentlyPlayedCell
         
-        var imageURL = String()
-        
-        viewModel.songInfo(indexPath: indexPath, cellSong: &cell.songLabel, cellAlbum: &cell.albumNameLabel, cellArtist: &cell.musicianNameLabel, cellTime: &cell.timeLabel, imageURL: &imageURL)
+      var imageURL = String()
+      let song = viewModel.allTracks.value[indexPath.row]
+      cell.songLabel.text = song.name
+      cell.albumNameLabel.text = song.album?.name
+      cell.musicianNameLabel.text = song.artists[0].name
+      imageURL = song.album!.images[0].url
+
+        //viewModel.songInfo(indexPath: indexPath, cellSong: &cell.songLabel, cellAlbum: &cell.albumNameLabel, cellArtist: &cell.musicianNameLabel, cellTime: &cell.timeLabel, imageURL: &imageURL)
         
         cell.playImage.image = viewModel.chooseButtonIcon(index: indexPath.row)
         

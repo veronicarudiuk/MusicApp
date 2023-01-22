@@ -81,6 +81,7 @@ class RecentlyPlayedViewModel {
             if shortLastTracks.count >= 9 {
                 shortLastTracks = Array(shortLastTracks[0...9])
             }
+            self.allTracks.value.removeAll()
             fetchData()
             //            раскомментировать когда нужно удалить записи в кор дате
             //            deleteAllFromCoreData()
